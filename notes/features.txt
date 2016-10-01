@@ -1,0 +1,30 @@
+Features to design:
+- Bible reading
+    - open source bible version, dynamically build pages for this
+    - provide study notes
+    - search for key terms
+    - listen to chapters/verses
+- Upload supplementary documents
+    - eventually build in tools to have sample bible studies here
+- Users/Groups
+    - be able to share with a set group of people
+    - only view your own groups.  add people to a group by email
+- Share passage with other people
+    - Share within your group or with a custom group or to a single person
+    - Allow annotations of the text
+    - Allow overall comments
+- Messaging
+    - Basic chat features/comment features.
+    - On a passage/document/message board for a group
+- Prayer requests
+    - Article style, basic comment with an option to remove if you want
+    - Default to share with current group, but can choose which groups to share with
+- Email
+    - send invitations to the site for people to join
+    - provide daily/weekly updates on content for your bible study
+Can expand beyond this.
+MVP
+- Bible reading
+- Users/Groups
+- Share passage
+- Upload document

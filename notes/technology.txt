@@ -1,0 +1,16 @@
+Technologies used:
+
+Ruby - main backend language - should be a simple REST API
+Rails - ORM to manage database interactions and other stuff within Ruby
+SQLite3 - database
+
+Javascript ES6 - main frontend language
+React - component structures to build frontend
+React-router - used for easy frontend routing
+Radium - plugs in with react to be able to do powerful things for styling and dynamically rendering
+webpack - transpile ES6 code to be usable.
+
+Other technical requirements
+Bible API - http://www.esvapi.org/api for docs on the API used here
+react-bootstrap - a convenient initial styles option
+

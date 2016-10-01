@@ -1,0 +1,22 @@
+/ - home page for site.  Provide option to either view my groups or read bible, show verse of the day
+/login - login page
+/logout - landing page after logging out
+/user - basic user preferences - timezone, language, bible version
+/groups - List the groups the user is part of
+/groups/:id - Dashboard for a group, navigate to other pages for a site
+Subroutes of /groups/:id
+- /documents(/:id) - view the files uploaded to the group
+- /prayer(/:id) - view prayer requests for members of your group
+
+/bible - a page to read the bible with quick links on a sidebar to jump to a specific book
+/bible/:book - same as previous, but if current book is selected, allow for chapter to be selected
+/bible/:book/:chapter - same as previous, jump to specific chapter.
+These 3 routes all go to the same component.  Only load required content (2 chapters in either direction of current)
+
+/api/users/:id - GET basic user data
+/api/users - POST new user data
+/api/groups - GET/POST
+/api/documents
+/api/prayer
+/api/comment
+/api/bible
