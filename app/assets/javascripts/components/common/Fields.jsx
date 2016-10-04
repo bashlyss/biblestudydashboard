@@ -1,71 +1,72 @@
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 import Formsy from 'formsy-react';
+import Radium from 'radium';
 
-const FieldGroup = ({id, label, help, ...props}) => {
-    return (
-      <FormGroup controlId={id}>
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl {...props} />
-        {help && <HelpBlock>{help}</HelpBlock>}
-      </FormGroup>
-    );
-}
-
-const Input = React.createClass({
-    componentWillMount() {
-        this.type = "text"
-    },
+let Input = React.createClass({
     mixins: [Formsy.Mixin],
+    styles() {
+        return {
+            container: {
+              textAlign: 'center',
+              margin: '10px 0',
+            },
+            label: {
+              width: '30%',
+              display: 'inline-block',
+              paddingRight: '5px',  
+            },
+            input: {
+              width: '60%',
+              display: 'inline-block',
+            }
+        }
+    },
     changeValue(event) {
         this.setValue(event.currentTarget[this.props.type === 'checkbox' ? 'checked' : 'value']);
     },
     render() {
-        const className = (this.props.className || '') +
-            (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
-        const errorMessage = this.getErrorMessage();
+        const className = 'form-group' + (this.props.className || ' ') +
+          (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
 
-        return FieldGroup({
-            onChange: this.changeValue,
-            value: this.getValue(),
-            help: errorMessage,
-            className,
-            type: this.type,
-            ...this.props
-        });
-    },
+         // An error message is returned ONLY if the component is invalid
+         // or the server has returned an error message
+         const errorMessage = this.getErrorMessage();
+
+         return (
+           <div className={className} style={this.styles().container}>
+               <label style={this.styles().label} htmlFor={this.props.name}>{this.props.title}</label>
+               <input
+                 style={this.styles().input}
+                 type={this.props.type || 'text'}
+                 name={this.props.name}
+                 onChange={this.changeValue}
+                 value={this.getValue()}
+                 checked={this.props.type === 'checkbox' && this.getValue() ? 'checked' : null}
+               />
+               <span className='validation-error'>{errorMessage}</span>
+           </div>
+        );
+    }
 });
-
-Input.propTypes = {
-    id: React.PropTypes.string,
-    className: React.PropTypes.string,
-    label: React.PropTypes.string,
-};
-
-Input.defaultProps = {
-    id: '', className: '', label: '',
-};
+Input = Radium(Input)
 
 
-class EmailInput extends Input {
-    componentWillMount() {
-        this.type = "email";
+class EmailInput extends React.Component {
+    render() {
+        return <Input
+          type="email"
+          validations="isEmail"
+          validationError="This is not a valid email"
+          {...this.props}
+        />;
     }
 };
 
-EmailInput.defaultProps = {
-    id: '', className: '', label: 'Email',
-};
 
-
-class PasswordInput extends Input {
-    componentWillMount() {
-        this.type = "password";
+class PasswordInput extends React.Component {
+    render() {
+        return <Input type="password" {...this.props} />;
     }
-};
-
-PasswordInput.defaultProps = {
-    id: '', className: '', label: 'Password',
 };
 
 export {

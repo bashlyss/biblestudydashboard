@@ -1,15 +1,25 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
+  before_filter :authenticate_user, :only => [:logout]
+  before_filter :save_login_state, :only => [:create, :login]
+  def create
+    @user = User.new(app_params)
+    render :json => @user.save
   end
-  def craete
-    @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "You signed up successfully"
-      flash[:color] = "valid"
+  def logout
+    session[:user_id] = nil
+    render :json => true
+  end
+  def login
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      render :json => true
     else
-      flash[:notice] = "Form is invalid"
-      flash[:color] = "invalid"
+      render :json => false
     end
-    render "new"
+  end
+  private
+  def app_params
+    params.permit(:email, :name, :password, :password_confirmation)
+  end
 end

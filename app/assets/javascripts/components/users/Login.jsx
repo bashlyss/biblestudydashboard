@@ -1,18 +1,21 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import Form from '../common/Form';
 import { EmailInput, PasswordInput } from '../common/Fields';
+import $ from 'jquery';
 
 class Login extends React.Component {
-    getValidationState() {
-        return 'success';
-        return 'warning';
-        return 'error';
+    submit(data) {
+        $.post('/login', data, success => {
+            if (success) {
+                window.location.href = '/';
+            }
+        });
     }
     render() {
         return (
-          <Form horizontal>
-            <EmailInput id="email" />
-            <PasswordInput id="password" />
+          <Form submitText="Log In" submit={this.submit.bind(this)}>
+            <EmailInput id="email" title="Email" name="email" required />
+            <PasswordInput id="password" title="Password" name="password" required />
           </Form>
         )
     }

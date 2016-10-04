@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
-  get 'users/new'
 
   root 'pages#index'
+  get 'signup/', to: 'pages#noauth'
+  get 'login/', to: 'pages#noauth'
+  post 'login/', to: 'users#login'
+  post 'logout/', to: 'users#logout'
 
-  namespace :api do
-      resources :groups do
-        resource :files
-      end
-      resources :users, :bible
+  resources :groups do
+    resource :files
   end
+  resources :users, :bible
+
+
   get '*catchall', to: 'pages#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
