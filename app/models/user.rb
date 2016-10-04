@@ -1,6 +1,8 @@
 require 'digest/sha1'
 
 class User < ApplicationRecord
+  has_and_belongs_to_many :groups
+  has_many :groups, foreign_key: "owner_id"
   attr_accessor :password
   EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
   validates :name, :presence => true
