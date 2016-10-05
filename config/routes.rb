@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'logout/', to: 'users#logout'
 
   resources :groups do
-    resource :files
+    resource :docs
   end
   resources :users, :bible
 

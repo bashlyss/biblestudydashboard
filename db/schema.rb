@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004155430) do
+ActiveRecord::Schema.define(version: 20161005180654) do
+
+  create_table "docs", force: :cascade do |t|
+    t.text     "description"
+    t.string   "title"
+    t.integer  "group_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.index ["group_id"], name: "index_docs_on_group_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
