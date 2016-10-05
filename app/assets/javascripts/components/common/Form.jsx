@@ -15,7 +15,6 @@ class MyForm extends React.Component {
             form: {
                 padding: '20px',
                 margin: '20px auto',
-                width: '50%',
                 border: '3px solid #0d0221',
                 backgroundColor: '#a1a6b4',
             },
@@ -32,6 +31,9 @@ class MyForm extends React.Component {
                 right: 0,
                 bottom: 0,
             },
+            reduceWidth: {
+                width: '50%',
+            },
         };
     }
     enableButton() {
@@ -42,14 +44,20 @@ class MyForm extends React.Component {
     }
     render() {
         return (
-          <Form style={this.styles.form} onSubmit={this.props.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-            {this.props.children}
-            <div style={this.styles.submitWrapper}>
-              <button type="submit" disabled={!this.state.canSubmit} style={this.styles.submit}>
-                {this.props.submitText || 'Submit'}
-              </button>
-            </div>
-          </Form>
+          <div style={[this.styles.form, this.props.reduceWidth && this.styles.reduceWidth]}>
+            <Form
+              onSubmit={this.props.submit}
+              onValid={this.enableButton}
+              onInvalid={this.disableButton}
+            >
+              {this.props.children}
+              <div style={this.styles.submitWrapper}>
+                <button type="submit" disabled={!this.state.canSubmit} style={this.styles.submit}>
+                  {this.props.submitText || 'Submit'}
+                </button>
+              </div>
+            </Form>
+          </div>
         )
     }
 }

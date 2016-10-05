@@ -6,6 +6,13 @@ import GroupItem from './groups/GroupItem';
 
 @Radium
 class Home extends React.Component {
+    get styles() {
+        return {
+            list: {
+                padding: 0,
+            },
+        }
+    }
     componentDidMount() {
         $.get('/groups', {}, groups => { this.setState({ groups }) });
     }
@@ -18,8 +25,8 @@ class Home extends React.Component {
     render() {
         return (
           <div>
-            <ul>
-              {_.map(this.groups, group => <GroupItem {...group} />)}
+            <ul style={this.styles.list}>
+              {_.map(this.groups, group => <GroupItem key={group.id} {...group} />)}
             </ul>
           </div>
         );

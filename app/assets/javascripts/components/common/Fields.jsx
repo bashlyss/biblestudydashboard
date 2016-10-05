@@ -13,6 +13,7 @@ let Input = React.createClass({
               margin: '10px 0',
             },
             label: {
+              textAlign: 'right',
               width: '30%',
               display: 'inline-block',
               paddingRight: '5px',  
@@ -67,6 +68,7 @@ let SelectInput = React.createClass({
               width: '30%',
               display: 'inline-block',
               paddingRight: '5px',  
+              textAlign: 'right',
             },
             input: {
               textAlign: 'initial',
@@ -121,6 +123,7 @@ let TextInput = React.createClass({
               width: '30%',
               display: 'inline-block',
               paddingRight: '5px',  
+              textAlign: 'right',
             },
             input: {
               width: '60%',

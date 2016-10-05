@@ -15,7 +15,7 @@ class AddGroupPage extends React.Component {
     getUsers(input, callback) {
         $.get('/users', {}, results => {
             callback(null, {
-              options: _.map(results, user => ({value: user.email, label: user.email})),
+              options: _.map(results, user => ({value: user.id, label: user.email})),
               complete: true,
             });
         });
@@ -27,7 +27,7 @@ class AddGroupPage extends React.Component {
             <TextInput title="Description" name="description" required />
             <SelectInput
               title="Users"
-              name="emails"
+              name="user_ids"
               loadOptions={this.getUsers}
               multi={true}
               allowCreate={true}
@@ -36,6 +36,9 @@ class AddGroupPage extends React.Component {
           </Form>
         )
     }
+}
+AddGroupPage.contextTypes = {
+    router: React.PropTypes.object,
 }
 
 export default AddGroupPage;

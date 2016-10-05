@@ -12,6 +12,10 @@ class App extends React.Component {
                 width: '100%',
                 color: '#4b4e6d',
             },
+            main: {
+                display: 'table',
+                width: '100%',
+            },
             header: {
                 position: 'relative',
                 textAlign: 'center',
@@ -22,6 +26,8 @@ class App extends React.Component {
             body: {
                 margin: '0 auto',
                 padding: '20px',
+                display: 'table-cell',
+                width: 'calc(100% - 260px)',
             },
             button: {
                 backgroundColor: '#84dcc6',
@@ -51,8 +57,10 @@ class App extends React.Component {
               {loggedIn &&
               <button style={this.styles.button} onClick={this.logout.bind(this)}>Log Out</button>}
             </div>
-            {loggedIn && <Sidebar />}
-            <div style={this.styles.body}>{this.props.children}</div>
+            <div style={this.styles.main}>
+              {loggedIn && <Sidebar />}
+              <div style={this.styles.body}>{this.props.children}</div>
+            </div>
           </div>
         );
     }
