@@ -25,7 +25,13 @@ let Input = React.createClass({
         }
     },
     changeValue(event) {
-        this.setValue(event.currentTarget[this.props.type === 'checkbox' ? 'checked' : 'value']);
+        if (this.props.type === 'checkbox') {
+            this.setValue(event.currentTarget.checked);
+        } else if (this.props.type === 'file') {
+            this.setValue(event.currentTarget.files[0]);
+        } else {
+            this.setValue(event.currentTarget.value);
+        }
     },
     render() {
         const className = 'form-group' + (this.props.className || ' ') +
@@ -45,7 +51,6 @@ let Input = React.createClass({
                type={this.props.type || 'text'}
                name={this.props.name}
                onChange={this.changeValue}
-               value={this.getValue()}
                checked={this.props.type === 'checkbox' && this.getValue() ? 'checked' : null}
              />
              <span className='validation-error'>{errorMessage}</span>
@@ -175,10 +180,17 @@ class PasswordInput extends React.Component {
     }
 };
 
+class FileInput extends React.Component {
+    render() {
+        return <Input type="file" {...this.props} />;
+    }
+}
+
 export {
     Input,
     EmailInput,
     PasswordInput,
     SelectInput,
     TextInput,
+    FileInput,
 };

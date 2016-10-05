@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   post 'login/', to: 'users#login'
   post 'logout/', to: 'users#logout'
 
-  resources :groups do
-    resource :docs
-  end
-  resources :users, :bible
+  #scope '/api' do
+    resources :groups do
+      resources :docs
+    end
+    resources :users, :bible
+  #end
 
 
   get '*catchall', to: 'pages#index'

@@ -9,6 +9,7 @@ class UserRow extends React.Component {
                 listStyle: 'none',
                 padding: '5px',
                 display: 'block',
+                borderBottom: '1px solid #a1a6b4',
             },
             header: {
                 fontSize: '16px',
