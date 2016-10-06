@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'login/', to: 'pages#noauth'
   post 'login/', to: 'users#login'
   post 'logout/', to: 'users#logout'
+  get 'docs/:id', to: 'docs#getDocument'
 
   #scope '/api' do
     resources :groups do
