@@ -9,7 +9,8 @@ class GroupBase extends React.Component {
             header: {
                 background: '#a1a6b4',
                 marginBottom: '15px',
-            }
+                padding: '5px',
+            },
         }
     }
     get linkAddDocument() {

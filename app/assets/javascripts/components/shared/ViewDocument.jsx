@@ -21,9 +21,12 @@ class ViewDocument extends React.Component {
     render() {
         return (
           <div style={this.styles.base}>
-            <h2>{this.state.title}</h2>
+            <h2>
+              <a href={this.url} target="_blank" rel="noopenner noreferrer">
+                {this.state.title}
+              </a>
+            </h2>
             <h4>{this.state.description}</h4>
-            <h4><a href={this.url} target="_blank" rel="noopenner noreferrer">View</a></h4>
           </div>
         );
     }
