@@ -17,7 +17,16 @@ class GroupsController < ApplicationController
             :include => [
                 {:users => {:only => [:name, :email, :id]}},
                 {:owner => {:only => [:name, :email, :id]}},
-                :docs
+                :docs,
+                {
+                    :comments =>
+                        {
+                            :only => [:title, :comment, :id],
+                            :include => {
+                                :user => {:only => :name}
+                            }
+                        }
+                },
             ])
     end
 

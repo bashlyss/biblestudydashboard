@@ -2,6 +2,8 @@ import React from 'react';
 import Radium from 'radium';
 import AddCommentForm from '../comments/AddCommentForm';
 import CommentRow from '../comments/CommentRow';
+import $ from 'jquery';
+import _ from 'lodash';
 
 @Radium
 class ViewDocument extends React.Component {

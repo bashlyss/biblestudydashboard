@@ -6,7 +6,12 @@ class CommentsController < ApplicationController
         comment.user_id = session[:user_id]
         success = comment.save
         if success
-            render :json => comment
+            render :json => comment.to_json(
+                :only => [:title, :comment, :id],
+                :include => {
+                    :user => {:only => :name}
+                }
+            )
         else
             render :json => false
         end

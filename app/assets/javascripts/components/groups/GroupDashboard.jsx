@@ -4,6 +4,8 @@ import $ from 'jquery';
 import _ from 'lodash';
 import UserRow from '../users/UserRow';
 import SharedRow from '../shared/SharedRow';
+import AddCommentForm from '../comments/AddCommentForm';
+import CommentRow from '../comments/CommentRow';
 
 @Radium
 class GroupDashboard extends React.Component {
@@ -42,6 +44,13 @@ class GroupDashboard extends React.Component {
             }
         };
     }
+    addRow(comment) {
+        if (comment) {
+            this.setState({
+                comments: _.concat(this.state.comments, comment),
+            })
+        }
+    }
     render() {
         return (
           <div>
@@ -70,6 +79,18 @@ class GroupDashboard extends React.Component {
                 </ul>
               </div>
             </div>
+            <h5>Comments</h5>
+            <ul>
+              {_.map(
+                  this.state.comments,
+                  comment => <CommentRow key={comment.id} {...comment} />)
+              }
+            </ul>
+            <AddCommentForm
+              type="Group"
+              parentId={this.props.params.groupId}
+              updateAfterAdd={this.addRow.bind(this)}
+            />
           </div>
         );
     }

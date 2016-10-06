@@ -13,6 +13,7 @@ class CommentRow extends React.Component {
                 padding: '10px',
                 display: 'block',
                 marginBottom: '10px',
+                position: 'relative',
             },
             header: {
                 fontSize: '14px',
@@ -20,7 +21,13 @@ class CommentRow extends React.Component {
             },
             description: {
                 fontSize: '14px',
-            }
+            },
+            user: {
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                fontSize: '12px',
+            },
         };
     }
     render() {
@@ -28,6 +35,7 @@ class CommentRow extends React.Component {
           <li style={this.styles.base}>
             <div style={this.styles.header}>{this.props.title}</div>
             <div style={this.styles.description}>{this.props.comment}</div>
+            <div style={this.styles.user}>Posted by: {this.props.user.name}</div>
           </li>
         );
     }
