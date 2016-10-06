@@ -14,7 +14,10 @@ class DocsController < ApplicationController
         doc = Doc.find(params[:id])
         group = Group.find(doc.group_id)
         if Group.for_user(session[:user_id]).include?(group)
-            render :json => doc
+            render :json => doc.to_json(
+                :include => [
+                    {:comments => {:only => [:title, :comment, :user_id, :id]}},
+                ])
         else
             render :json => {}
         end

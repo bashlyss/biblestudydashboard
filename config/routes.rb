@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :groups do
       resources :docs
     end
-    resources :users, :bible
+    resources :users, :comments
   #end
 
 

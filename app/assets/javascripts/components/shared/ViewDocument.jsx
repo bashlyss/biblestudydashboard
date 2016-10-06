@@ -1,5 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
+import AddCommentForm from '../comments/AddCommentForm';
+import CommentRow from '../comments/CommentRow';
 
 @Radium
 class ViewDocument extends React.Component {
@@ -18,6 +20,13 @@ class ViewDocument extends React.Component {
             },
         };
     }
+    addRow(comment) {
+        if (comment) {
+            this.setState({
+                comments: _.concat(this.state.comments, comment),
+            })
+        }
+    }
     render() {
         return (
           <div style={this.styles.base}>
@@ -27,6 +36,14 @@ class ViewDocument extends React.Component {
               </a>
             </h2>
             <h4>{this.state.description}</h4>
+            <ul>
+              {_.map(this.state.comments, comment => <CommentRow key={comment.id} {...comment} />)}
+            </ul>
+            <AddCommentForm
+              type="Doc"
+              parentId={this.props.params.id}
+              updateAfterAdd={this.addRow.bind(this)}
+            />
           </div>
         );
     }

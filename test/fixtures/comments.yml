@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  title: MyString
+  comment: MyText
+  attached_to: one
+  attached_to_type: Attached to
+
+two:
+  user: 
+  title: MyString
+  comment: MyText
+  attached_to: two
+  attached_to_type: Attached to
