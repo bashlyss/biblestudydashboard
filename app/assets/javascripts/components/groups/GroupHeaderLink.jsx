@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import $ from 'jquery';
 
 @Radium
 class GroupHeaderLink extends React.Component {
@@ -25,7 +26,15 @@ class GroupHeaderLink extends React.Component {
         };
     }
     navigate() {
-        this.context.router.push(this.props.to);
+        if (!this.props.api) {
+            this.context.router.push(this.props.to);
+        } else {
+            $.ajax({
+                url: this.props.to,
+                type: this.props.type,
+                success: this.props.onComplete,
+            });
+        }
     }
     render() {
         return (

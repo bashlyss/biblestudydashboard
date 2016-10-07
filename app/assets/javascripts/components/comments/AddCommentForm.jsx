@@ -12,7 +12,7 @@ class AddCommentForm extends React.Component {
     }
     render() {
         return (
-          <Form submit={this.submit.bind(this)}>
+          <Form submit={this.submit.bind(this)} title="Add a comment">
             <Input title="Title" name="title" required />
             <TextInput title="Comment" name="comment" required />
           </Form>

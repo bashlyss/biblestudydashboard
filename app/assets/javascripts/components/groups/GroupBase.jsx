@@ -19,12 +19,31 @@ class GroupBase extends React.Component {
     get linkGroupHome() {
         return _.replace('/mygroups/:groupid/', ':groupid', this.props.params.groupId);
     }
+    get linkCloseGroup() {
+        return _.replace('/groups/:groupId', ':groupId', this.props.params.groupId);
+    }
+    navigateHome() {
+        this.context.router.push('/');
+    }
     render() {
         return (
           <div>
             <div style={this.styles.header}>
               <GroupHeaderLink to={this.linkGroupHome} name="Group Home" />
               <GroupHeaderLink to={this.linkAddDocument} name="Add Document" />
+              <GroupHeaderLink
+                to={this.linkCloseGroup}
+                name="Close Group"
+                api
+                type="DELETE"
+                onComplete={this.navigateHome.bind(this)}
+              />
+              <GroupHeaderLink
+                to={this.linkCloseGroup}
+                name="Enable Group"
+                api
+                type="POST"
+              />
             </div>
             <div>
               {this.props.children}
@@ -32,6 +51,9 @@ class GroupBase extends React.Component {
           </div>
         );
     }
+}
+GroupBase.contextTypes = {
+    router: React.PropTypes.object,
 }
 
 export default GroupBase;

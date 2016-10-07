@@ -52,8 +52,8 @@ class App extends React.Component {
         return (
           <div style={this.styles.base}>
             <div style={this.styles.header}>
-              <h1>My Bible Study</h1>
-              <h3>A place to share resources and discuss interesting passages</h3>
+              <h1>My Group Study</h1>
+              <h3>A place to share resources and discuss</h3>
               {loggedIn &&
               <button style={this.styles.button} onClick={this.logout.bind(this)}>Log Out</button>}
             </div>

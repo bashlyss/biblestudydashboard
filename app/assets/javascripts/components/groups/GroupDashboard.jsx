@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import { Link } from 'react-router';
 import $ from 'jquery';
 import _ from 'lodash';
 import UserRow from '../users/UserRow';
@@ -52,6 +53,8 @@ class GroupDashboard extends React.Component {
         }
     }
     render() {
+        // TODO support editing #28
+        const editState = _.pick(this.state, ['name', 'description', 'id']);
         return (
           <div>
             <div style={this.styles.header}>

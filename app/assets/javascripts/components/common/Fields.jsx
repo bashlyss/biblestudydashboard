@@ -33,13 +33,16 @@ let Input = React.createClass({
             this.setValue(event.currentTarget.value);
         }
     },
+    reset() {
+        this.resetValue();
+        this.input.value = '';
+    },
     render() {
         const className = 'form-group' + (this.props.className || ' ') +
           (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
 
          // An error message is returned ONLY if the component is invalid
          // or the server has returned an error message
-         const errorMessage = this.getErrorMessage();
 
          return (
            <div className={className} style={this.styles().container}>
@@ -47,13 +50,13 @@ let Input = React.createClass({
                {this.props.title}
              </label>
              <input
+               ref={input => { this.input = input; }}
                style={this.styles().input}
                type={this.props.type || 'text'}
                name={this.props.name}
                onChange={this.changeValue}
                checked={this.props.type === 'checkbox' && this.getValue() ? 'checked' : null}
              />
-             <span className='validation-error'>{errorMessage}</span>
            </div>
         );
     }
@@ -90,7 +93,6 @@ let SelectInput = React.createClass({
     render() {
         const className = 'form-group' + (this.props.className || ' ') +
           (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
-        const errorMessage = this.getErrorMessage();
 
         const otherProps = _.omit(this.props, ['title', 'className', 'required']);
         otherProps.className = "mybiblestudy";
@@ -107,7 +109,6 @@ let SelectInput = React.createClass({
             <label style={this.styles().label} htmlFor={this.props.name}>{this.props.title}</label>
             <Radium.Style scopeSelector=".Select.mybiblestudy" rules={this.styles().input} />
             {select}
-            <span className="validation-error">{errorMessage}</span>
           </div>
         );
     }
@@ -141,10 +142,14 @@ let TextInput = React.createClass({
       this.setValue(event.currentTarget.value);
     },
 
+    reset() {
+        this.resetValue();
+        this.input.value = '';
+    },
+
     render() {
       const className = 'form-group' + (this.props.className || ' ') +
         (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
-      const errorMessage = this.getErrorMessage();
 
       return (
         <div style={this.styles().container} className={className}>
@@ -152,11 +157,11 @@ let TextInput = React.createClass({
             {this.props.title}
           </label>
           <textarea
+            ref={input => { this.input = input; }}
             style={this.styles().input}
             name={this.props.name}
             onChange={this.changeValue}
             value={this.getValue()} />
-          <span className="validation-error">{errorMessage}</span>
         </div>
       );
     }

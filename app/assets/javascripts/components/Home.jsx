@@ -25,6 +25,7 @@ class Home extends React.Component {
     render() {
         return (
           <div>
+            <h3>My Groups</h3>
             <ul style={this.styles.list}>
               {_.map(this.groups, group => <GroupItem key={group.id} {...group} />)}
             </ul>

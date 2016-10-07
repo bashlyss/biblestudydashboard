@@ -7,7 +7,6 @@ class CommentRow extends React.Component {
     get styles() {
         return {
             base: {
-                cursor: 'pointer',
                 listStyle: 'none',
                 border: '2px solid #4b4e6d',
                 padding: '10px',

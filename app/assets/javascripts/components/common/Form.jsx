@@ -1,6 +1,7 @@
-import React from 'react'
-import { Form } from 'formsy-react'
-import Radium from 'radium'
+import React from 'react';
+import { Form } from 'formsy-react';
+import Radium from 'radium';
+import _ from 'lodash';
 
 @Radium
 class MyForm extends React.Component {
@@ -34,6 +35,12 @@ class MyForm extends React.Component {
             reduceWidth: {
                 width: '50%',
             },
+            header: {
+                marginTop: 0,
+            },
+            disabledSubmit: {
+                display: 'none',
+            }
         };
     }
     enableButton() {
@@ -42,17 +49,28 @@ class MyForm extends React.Component {
     disableButton() {
         this.setState({ canSubmit: false });
     }
+    submit(data) {
+        this.form.reset();
+        _.each(this.form.inputs, input => { input.reset(); });
+        this.props.submit(data);
+    }
     render() {
         return (
           <div style={[this.styles.form, this.props.reduceWidth && this.styles.reduceWidth]}>
+            <h3 style={this.styles.header}>{this.props.title}</h3>
             <Form
-              onSubmit={this.props.submit}
+              ref={form => this.form=form}
+              onSubmit={this.submit.bind(this)}
               onValid={this.enableButton}
               onInvalid={this.disableButton}
             >
               {this.props.children}
               <div style={this.styles.submitWrapper}>
-                <button type="submit" disabled={!this.state.canSubmit} style={this.styles.submit}>
+                <button
+                  type="submit"
+                  disabled={!this.state.canSubmit}
+                  style={[this.styles.submit, !this.state.canSubmit && this.styles.disabledSubmit]}
+                >
                   {this.props.submitText || 'Submit'}
                 </button>
               </div>
@@ -60,6 +78,9 @@ class MyForm extends React.Component {
           </div>
         )
     }
+}
+MyForm.defaultProps = {
+    title: '',
 }
 
 export default MyForm;

@@ -3,11 +3,15 @@ class GroupsController < ApplicationController
     def create
         group = Group.new(app_params)
         group.owner_id = session[:user_id]
+        group.active = true
+        if !group.users.include?(@current_user)
+            group.users.push(@current_user)
+        end
         render :json => group.save
     end
     
     def index
-        @groups = Group.for_user(session[:user_id])
+        @groups = Group.for_user(session[:user_id]).where(active: true)
         render :json => @groups
     end
     
@@ -29,6 +33,24 @@ class GroupsController < ApplicationController
                 },
             ])
     end
+
+    def update
+        group = Group.find(params[:id])
+        if group.owner_id == session[:user_id] && params[:activate]
+            group.active = true
+            group.save
+        end
+        render :json => true
+    end
+
+    def destroy
+        group = Group.find(params[:id])
+        if group.owner_id == session[:user_id]
+            group.active = false
+            group.save
+        end
+        render :json => true
+    end 
 
     private
     def app_params

@@ -38,7 +38,7 @@ class UploadDocument extends React.Component {
     }
     render() {
         return (
-          <Form submit={this.submit.bind(this)}>
+          <Form submit={this.submit.bind(this)} title="Upload a document to the group">
             <Input title="Title" name="title" required />
             <TextInput title="Description" name="description" required />
             <FileInput title="Document" name="document" required />

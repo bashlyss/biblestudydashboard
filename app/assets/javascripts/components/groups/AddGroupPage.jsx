@@ -22,7 +22,7 @@ class AddGroupPage extends React.Component {
     }
     render() {
         return (
-          <Form submit={this.submit.bind(this)}>
+          <Form submit={this.submit.bind(this)} title="Create a new Group">
             <Input title="Name" name="name" required />
             <TextInput title="Description" name="description" required />
             <SelectInput
