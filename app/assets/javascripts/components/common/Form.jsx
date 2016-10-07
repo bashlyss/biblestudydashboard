@@ -50,8 +50,10 @@ class MyForm extends React.Component {
         this.setState({ canSubmit: false });
     }
     submit(data) {
-        this.form.reset();
-        _.each(this.form.inputs, input => { input.reset(); });
+        if (this.props.clearOnSubmit) {
+            this.form.reset();
+            _.each(this.form.inputs, input => { input.reset(); });
+        }
         this.props.submit(data);
     }
     render() {

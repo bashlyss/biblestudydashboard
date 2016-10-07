@@ -1,9 +1,21 @@
 import React from 'react';
 import Radium from 'radium';
 import GroupHeaderLink from './GroupHeaderLink';
+import $ from 'jquery';
 
 @Radium
 class GroupBase extends React.Component {
+    componentDidMount() {
+        $.get(
+          _.replace('/groups/:id/', ':id', this.props.params.groupId), {owner: true},
+          group => {
+              this.setState(group);
+              this.setState({
+                    isOwner: group.owner_id == $("#context").text(),
+              });
+          }
+        );
+    }
     get styles() {
         return {
             header: {
@@ -25,25 +37,32 @@ class GroupBase extends React.Component {
     navigateHome() {
         this.context.router.push('/');
     }
+    resetActive() {
+        this.setState({ active: true });
+    }
     render() {
         return (
           <div>
             <div style={this.styles.header}>
               <GroupHeaderLink to={this.linkGroupHome} name="Group Home" />
               <GroupHeaderLink to={this.linkAddDocument} name="Add Document" />
+              { this.state.isOwner && this.state.active &&
               <GroupHeaderLink
                 to={this.linkCloseGroup}
                 name="Close Group"
                 api
                 type="DELETE"
                 onComplete={this.navigateHome.bind(this)}
-              />
+              />}
+              { this.state.isOwner && !this.state.active &&
               <GroupHeaderLink
                 to={this.linkCloseGroup}
                 name="Enable Group"
                 api
-                type="POST"
-              />
+                type="PUT"
+                data={{activate: true}}
+                onComplete={this.resetActive.bind(this)}
+              />}
             </div>
             <div>
               {this.props.children}

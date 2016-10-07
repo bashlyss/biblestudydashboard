@@ -12,8 +12,8 @@ class AddCommentForm extends React.Component {
     }
     render() {
         return (
-          <Form submit={this.submit.bind(this)} title="Add a comment">
-            <Input title="Title" name="title" required />
+          <Form submit={this.submit.bind(this)} title="Add a comment" clearOnSubmit>
+            <Input title="Title" name="title" />
             <TextInput title="Comment" name="comment" required />
           </Form>
         )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006211456) do
+ActiveRecord::Schema.define(version: 20161007163049) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 20161006211456) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.         "user"
+    t.integer  "user_id"
     t.index ["group_id"], name: "index_docs_on_group_id"
+    t.index ["user_id"], name: "index_docs_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|

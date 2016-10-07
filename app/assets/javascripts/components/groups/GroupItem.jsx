@@ -21,6 +21,14 @@ class GroupItem extends React.Component {
                     background: '#a1a6b4',
                 },
             },
+            disabled: {
+                border: '2px solid rgba(75, 78, 109, 0.2)',
+                color: 'rgba(75, 78, 109, 0.6)',
+                ':hover': {
+                    border: '2px solid rgb(75, 78, 109)',
+                    color: 'rgb(75, 78, 109)',
+                }
+            },
             header: {
                 fontSize: '20px',
                 display: 'inline-block',
@@ -37,7 +45,7 @@ class GroupItem extends React.Component {
     }
     render() {
         return (
-          <li style={this.styles.base} onClick={this.viewGroup}>
+          <li style={[this.styles.base, !this.props.active && this.styles.disabled]} onClick={this.viewGroup}>
             <div style={this.styles.header}>{this.props.name}</div>
             <div style={this.styles.description}>{this.props.description}</div>
           </li>

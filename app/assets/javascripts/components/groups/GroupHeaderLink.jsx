@@ -33,6 +33,7 @@ class GroupHeaderLink extends React.Component {
                 url: this.props.to,
                 type: this.props.type,
                 success: this.props.onComplete,
+                data: this.props.data,
             });
         }
     }

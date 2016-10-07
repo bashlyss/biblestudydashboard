@@ -2,6 +2,7 @@ class DocsController < ApplicationController
     before_filter :authenticate_user
     def create
         doc = Doc.new(app_params)
+        doc.user = @current_user
         render :json => doc.save
     end
 

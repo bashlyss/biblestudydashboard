@@ -11,27 +11,32 @@ class GroupsController < ApplicationController
     end
     
     def index
-        @groups = Group.for_user(session[:user_id]).where(active: true)
-        render :json => @groups
+        @activegroups = Group.for_user(session[:user_id]).where(active: true)
+        @inactivegroups = Group.inactive(session[:user_id])
+        render :json => @activegroups + @inactivegroups
     end
     
     def show
         @group = Group.find(params[:id])
-        render :json => @group.to_json(
-            :include => [
-                {:users => {:only => [:name, :email, :id]}},
-                {:owner => {:only => [:name, :email, :id]}},
-                :docs,
-                {
-                    :comments =>
-                        {
-                            :only => [:title, :comment, :id],
-                            :include => {
-                                :user => {:only => :name}
+        if params[:owner]
+            render :json => @group.to_json(:only => [:id, :active, :owner_id]) 
+        else
+            render :json => @group.to_json(
+                :include => [
+                    {:users => {:only => [:name, :email, :id]}},
+                    {:owner => {:only => [:name, :email, :id]}},
+                    :docs,
+                    {
+                        :comments =>
+                            {
+                                :only => [:title, :comment, :id],
+                                :include => {
+                                    :user => {:only => :name}
+                                }
                             }
-                        }
-                },
-            ])
+                    },
+                ])
+        end
     end
 
     def update
