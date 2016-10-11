@@ -3,6 +3,7 @@ import Radium from 'radium';
 import { Link } from 'react-router';
 import $ from 'jquery';
 import _ from 'lodash';
+import GroupStore from '../../stores/GroupStore';
 import UserRow from '../users/UserRow';
 import SharedRow from '../shared/SharedRow';
 import AddCommentForm from '../comments/AddCommentForm';
@@ -10,11 +11,19 @@ import CommentRow from '../comments/CommentRow';
 
 @Radium
 class GroupDashboard extends React.Component {
+    constructor() {
+        super();
+        this.onChange = this.onChange.bind(this);
+    }
     componentDidMount() {
-        $.get(
-          _.replace('/groups/:id/', ':id', this.props.params.groupId), {},
-          group => { this.setState(group) }
-        );
+        GroupStore.listen(this.onChange);
+    }
+    componentWillUnmount() {
+        GroupStore.unlisten(this.onChange);
+    }
+    onChange(state) 
+    {
+        this.setState(state.groups);
     }
     get styles() {
         return {

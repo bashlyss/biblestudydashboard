@@ -1,11 +1,13 @@
 import React from 'react';
 import Radium from 'radium';
 import GroupHeaderLink from './GroupHeaderLink';
+import GroupActions from '../../actions/GroupActions';
 import $ from 'jquery';
 
 @Radium
 class GroupBase extends React.Component {
     componentDidMount() {
+        GroupActions.fetchGroups();
         $.get(
           _.replace('/groups/:id/', ':id', this.props.params.groupId), {owner: true},
           group => {
