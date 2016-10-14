@@ -3,7 +3,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import Home from './components/Home';
+import GroupListContainer from './components/containers/GroupListContainer';
 import NotFound from './components/error/NotFound';
 import GroupBase from './components/groups/GroupBase';
 import AddGroupPage from './components/groups/AddGroupPage';
@@ -18,7 +18,7 @@ import $ from 'jquery';
 const Routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Home} />
+      <IndexRoute component={GroupListContainer} />
       <Route path="login/" component={Login} />
       <Route path="signup/" component={Signup} />
       <Route path="addgroup/" component={AddGroupPage} />
