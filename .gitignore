@@ -1,28 +1,28 @@
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/public/system
-/coverage/
-/spec/tmp
+/rubystuffs/log
+/rubystuffs/tmp
+/rubystuffs/db/*.sqlite3
+/rubystuffs/db/*.sqlite3-journal
+/rubystuffs/public/system
+/rubystuffs/coverage/
+/rubystuffs/spec/tmp
 **.orig
 rerun.txt
 pickle-email-*.html
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
-config/secrets.yml
+rubystuffs/config/secrets.yml
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
 .env
 
 ## Environment normalization:
-/.bundle
-/vendor/bundle
+/rubystuffs/.bundle
+/rubystuffs/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
@@ -41,7 +41,7 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
-/node_modules
-/app/assets/javascripts/bundle.js
+node_modules
+bundle.js
 *.swp
-/uploads
+/rubystuffs/uploads
