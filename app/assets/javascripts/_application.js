@@ -4,10 +4,10 @@ import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import GroupListContainer from './components/containers/GroupListContainer';
+import GroupDetailContainer from './components/containers/GroupDetailContainer';
 import NotFound from './components/error/NotFound';
 import GroupBase from './components/groups/GroupBase';
 import AddGroupPage from './components/groups/AddGroupPage';
-import GroupDashboard from './components/groups/GroupDashboard';
 import ViewDocument from './components/shared/ViewDocument';
 import UploadDocument from './components/shared/UploadDocument';
 import Login from './components/users/Login';
@@ -25,7 +25,7 @@ const Routes = (
       <Route path="mygroups/">
         <IndexRedirect to="/" />
         <Route path=":groupId/" component={GroupBase}>
-          <IndexRoute component={GroupDashboard} />
+          <IndexRoute component={GroupDetailContainer} />
           <Route path="document/">
             <IndexRoute component={UploadDocument} />
             <Route path=":id/" component={ViewDocument} />

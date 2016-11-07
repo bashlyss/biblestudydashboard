@@ -18,25 +18,21 @@ class GroupsController < ApplicationController
     
     def show
         @group = Group.find(params[:id])
-        if params[:owner]
-            render :json => @group.to_json(:only => [:id, :active, :owner_id]) 
-        else
-            render :json => @group.to_json(
-                :include => [
-                    {:users => {:only => [:name, :email, :id]}},
-                    {:owner => {:only => [:name, :email, :id]}},
-                    :docs,
-                    {
-                        :comments =>
-                            {
-                                :only => [:title, :comment, :id],
-                                :include => {
-                                    :user => {:only => :name}
-                                }
+        render :json => @group.to_json(
+            :include => [
+                {:users => {:only => [:name, :email, :id]}},
+                {:owner => {:only => [:name, :email, :id]}},
+                :docs,
+                {
+                    :comments =>
+                        {
+                            :only => [:title, :comment, :id],
+                            :include => {
+                                :user => {:only => :name}
                             }
-                    },
-                ])
-        end
+                        }
+                },
+            ])
     end
 
     def update

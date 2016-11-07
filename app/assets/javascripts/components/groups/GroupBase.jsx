@@ -7,16 +7,7 @@ import $ from 'jquery';
 @Radium
 class GroupBase extends React.Component {
     componentDidMount() {
-        GroupActions.fetchGroups();
-        $.get(
-          _.replace('/groups/:id/', ':id', this.props.params.groupId), {owner: true},
-          group => {
-              this.setState(group);
-              this.setState({
-                    isOwner: group.owner_id == $("#context").text(),
-              });
-          }
-        );
+        GroupActions.fetch();
     }
     get styles() {
         return {

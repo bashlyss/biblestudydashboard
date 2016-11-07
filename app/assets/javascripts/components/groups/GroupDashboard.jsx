@@ -3,28 +3,14 @@ import Radium from 'radium';
 import { Link } from 'react-router';
 import $ from 'jquery';
 import _ from 'lodash';
-import GroupStore from '../../stores/GroupStore';
 import UserRow from '../users/UserRow';
 import SharedRow from '../shared/SharedRow';
 import AddCommentForm from '../comments/AddCommentForm';
 import CommentRow from '../comments/CommentRow';
+import GroupActions from '../../actions/GroupActions'
 
 @Radium
 class GroupDashboard extends React.Component {
-    constructor() {
-        super();
-        this.onChange = this.onChange.bind(this);
-    }
-    componentDidMount() {
-        GroupStore.listen(this.onChange);
-    }
-    componentWillUnmount() {
-        GroupStore.unlisten(this.onChange);
-    }
-    onChange(state) 
-    {
-        this.setState(state.groups);
-    }
     get styles() {
         return {
             base: {
@@ -55,11 +41,7 @@ class GroupDashboard extends React.Component {
         };
     }
     addRow(comment) {
-        if (comment) {
-            this.setState({
-                comments: _.concat(this.state.comments, comment),
-            })
-        }
+        GroupActions.fetch();
     }
     render() {
         // TODO support editing #28
@@ -67,20 +49,20 @@ class GroupDashboard extends React.Component {
         return (
           <div>
             <div style={this.styles.header}>
-              <h2 style={this.styles.name}>{this.state.name} Dashboard</h2>
-              <h4>{this.state.description}</h4>
+              <h2 style={this.styles.name}>{this.props.group.name} Dashboard</h2>
+              <h4>{this.props.group.description}</h4>
             </div>
             <div style={this.styles.base}>
               <div style={this.styles.column1}>
                 <h5>Users</h5>
                 <ul style={this.styles.users}>
-                  {_.map(this.state.users, user => <UserRow key={user.id} {...user} />)}
+                  {_.map(this.props.group.users, user => <UserRow key={user.id} {...user} />)}
                 </ul>
               </div>
               <div style={this.styles.column2}>
                 <h5>Shared Content</h5>
                 <ul style={this.styles.shared}>
-                  {_.map(this.state.docs, shared => (
+                  {_.map(this.props.group.docs, shared => (
                     <SharedRow
                       key={'doc-'+ shared.id}
                       groupId={this.props.params.groupId}
@@ -94,13 +76,13 @@ class GroupDashboard extends React.Component {
             <h5>Comments</h5>
             <ul>
               {_.map(
-                  this.state.comments,
+                  this.props.group.comments,
                   comment => <CommentRow key={comment.id} {...comment} />)
               }
             </ul>
             <AddCommentForm
               type="Group"
-              parentId={this.props.params.groupId}
+              parentId={this.props.groupId}
               updateAfterAdd={this.addRow.bind(this)}
             />
           </div>
