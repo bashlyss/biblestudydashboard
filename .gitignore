@@ -45,3 +45,7 @@ node_modules
 bundle.js
 *.swp
 /rubystuffs/uploads
+
+
+*.pyc
+venv
