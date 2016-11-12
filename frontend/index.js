@@ -1,4 +1,5 @@
 // Root page for all my dom stuff
+import Cookies from 'js-cookie';
 import React from 'react';
 import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
@@ -40,7 +41,7 @@ const Routes = (
 $(document).ready(function() {
     $.ajaxSetup({
         headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+            'X-CSRF-Token': Cookies.get('csrftoken'),
         },
     });
     ReactDOM.render(Routes, document.getElementById('main'));

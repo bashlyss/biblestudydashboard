@@ -18,4 +18,4 @@ class SessionActions {
     }
 }
 
-export default dispatcher.createActions(UserActions);
+export default dispatcher.createActions(SessionActions);

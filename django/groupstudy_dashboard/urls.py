@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^api/', include('accounts.urls')),
     url(r'^api/uploads/', include('uploads.urls')),
     url(r'^api/admin/', admin.site.urls),
-    url(r'^', TemplateView.as_view(template_name='index.html')),
+    url(r'^login/', TemplateView.as_view(template_name='index.html'), name='login_view'),
+    url(r'^', TemplateView.as_view(template_name='index.html'), name='home'),
 ]
 
 if settings.DEBUG:
