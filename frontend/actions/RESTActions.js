@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 class RESTActions {
     constructor(baseRoute) {
-        this.baseRoute = baseRoute;
+        this.baseRoute = `/api/${baseRoute}/`;
     }
 
     update(objects) {
@@ -22,10 +22,10 @@ class RESTActions {
         }
     }
 
-    create() {
+    create(data) {
         return (dispatch) => {
             dispatch();
-            axios.post(this.baseRoute).then(
+            axios.post(this.baseRoute, data).then(
                 response => { this.addOne(response.data); }
             ).catch(
                 errorMessage => { this.failed(errorMessage); }

@@ -1,0 +1,13 @@
+{% load static %}
+<html>
+  <head>
+    {% csrf_token %}
+    <title>My Bible Study</title>
+    <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css">
+    <script src="{% static 'bundle.js' %}" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+  </body>
+</html>

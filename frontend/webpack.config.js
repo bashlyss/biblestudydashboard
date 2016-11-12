@@ -4,7 +4,7 @@ module.exports = {
     context: path.resolve(__dirname),
     entry: ['./index.js'],
     output: {
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, '..', 'django', 'groupstudy_dashboard', 'static'),
         filename: 'bundle.js'
     },
     module: {

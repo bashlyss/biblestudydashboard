@@ -2,15 +2,12 @@ import React from 'react';
 import { Link } from 'react-router';
 import Form from '../common/Form';
 import { EmailInput, PasswordInput } from '../common/Fields';
+import UserActions from '../../actions/UserActions';
 import $ from 'jquery';
 
 class Login extends React.Component {
     submit(data) {
-        $.post('/login', data, success => {
-            if (success) {
-                window.location.href = '/';
-            }
-        });
+        UserActions.login(data, this.context.router);
     }
     render() {
         return (
@@ -24,6 +21,10 @@ class Login extends React.Component {
         )
     }
 
+}
+
+Login.contextTypes = {
+    router: React.PropTypes.object.isRequired,
 }
 
 export default Login;

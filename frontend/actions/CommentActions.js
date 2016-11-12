@@ -3,7 +3,7 @@ import RESTActions from './RESTActions';
 
 class CommentActions extends RESTActions {
     constructor() {
-        super('/comments/');
+        super('comments/groups');
     }
 }
 

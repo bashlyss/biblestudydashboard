@@ -3,7 +3,7 @@ import RESTActions from './RESTActions';
 
 class GroupActions extends RESTActions {
     constructor() {
-        super('/groups/');
+        super('groups');
     }
 }
 

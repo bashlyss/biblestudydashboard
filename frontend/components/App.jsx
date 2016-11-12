@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import Sidebar from './common/Sidebar';
+import UserActions from '../actions/UserActions';
 import $ from 'jquery';
 
 @Radium
@@ -41,11 +42,7 @@ class App extends React.Component {
         }
     }
     logout() {
-        $.post('/logout', {}, success => {
-            if (success) {
-                window.location.href = '/login/';
-            }
-        });
+        UserActions.logout();
     }
     render() {
         const loggedIn = $('#context').length > 0;

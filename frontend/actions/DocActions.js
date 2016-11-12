@@ -3,7 +3,7 @@ import RESTActions from './RESTActions';
 
 class DocActions extends RESTActions {
     constructor() {
-        super('/docs/');
+        super('uploads/documents');
     }
 }
 
