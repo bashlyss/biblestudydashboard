@@ -1,6 +1,7 @@
 // Root page for all my dom stuff
 import Cookies from 'js-cookie';
 import React from 'react';
+import axios from 'axios';
 import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import App from './components/App';
@@ -39,10 +40,7 @@ const Routes = (
 )
 
 $(document).ready(function() {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-Token': Cookies.get('csrftoken'),
-        },
-    });
+    axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8'
     ReactDOM.render(Routes, document.getElementById('main'));
 });

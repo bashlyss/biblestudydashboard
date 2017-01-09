@@ -1,7 +1,7 @@
-from rest_framework import viewsets
+from generic.views import AuthModelViewSet
 from . import models, serializers
 
 
-class DocumentViewSet(viewsets.ModelViewSet):
+class DocumentViewSet(AuthModelViewSet):
     queryset = models.Document.objects.all()
     serializer_class = serializers.DocumentSerializer

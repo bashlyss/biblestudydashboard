@@ -1,7 +1,7 @@
-from rest_framework import viewsets
+from generic.views import AuthModelViewSet
 from . import models, serializers
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(AuthModelViewSet):
     queryset = models.Group.objects.all().order_by('active', 'name')
     serializer_class = serializers.GroupSerializer

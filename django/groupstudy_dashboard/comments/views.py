@@ -1,11 +1,11 @@
-from rest_framework import viewsets
+from generic.views import AuthModelViewSet
 from . import models, serializers
 
 
-class GroupCommentViewSet(viewsets.ModelViewSet):
+class GroupCommentViewSet(AuthModelViewSet):
     queryset = models.GroupComment.objects.all()
     serializer_class = serializers.GroupCommentSerializer
 
-class DocumentCommentViewSet(viewsets.ModelViewSet):
+class DocumentCommentViewSet(AuthModelViewSet):
     queryset = models.DocumentComment.objects.all()
     serializer_class = serializers.DocumentCommentSerializer
