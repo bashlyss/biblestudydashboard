@@ -20,11 +20,12 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
     def validate(self, data):
-        import pdb;pdb.set_trace()
         email = data.get('email', None)
         if email:
             data['username'] = email
 
+        # TODO verify that this works as desired, password is not stored in plain text
+        # TODO ensure password is not passed in GET requests
         if not data['password'] == data['password_confirmation']:
             raise serializers.ValidationError({'password': 'Password does not match'})
 

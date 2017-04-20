@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# TODO setup to have a proper secret key not in git
 SECRET_KEY = '^u!-(^p&f6^x-14zrzk9hb0-*i2(@l$_xxyq3#qj)5dh1%=dkt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -56,6 +57,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'urls'
 
+# TODO create custom silent BasicAuthentication class https://richardtier.com/2014/03/06/110/
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
