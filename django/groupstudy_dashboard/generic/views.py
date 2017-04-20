@@ -1,5 +1,6 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
-class AuthModelViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
-    pass
+
+class AuthModelViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)

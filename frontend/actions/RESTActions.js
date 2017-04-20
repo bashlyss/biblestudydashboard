@@ -1,6 +1,6 @@
 import dispatcher from '../dispatcher/Dispatcher';
 import axios from 'axios';
-import _ from 'lodash';
+import { stringify } from 'qs';
 
 class RESTActions {
     constructor(baseRoute) {
@@ -14,7 +14,7 @@ class RESTActions {
     fetch() {
         return (dispatch) => {
             dispatch();
-            axios.get(this.baseRoute).then(
+            return axios.get(this.baseRoute).then(
                 response => { this.update(response.data); }
             ).catch(
                 errorMessage  => { this.failed(errorMessage); }
@@ -25,7 +25,7 @@ class RESTActions {
     create(data) {
         return (dispatch) => {
             dispatch();
-            axios.post(this.baseRoute, data).then(
+            return axios.post(this.baseRoute, stringify(data)).then(
                 response => { this.addOne(response.data); }
             ).catch(
                 errorMessage => { this.failed(errorMessage); }

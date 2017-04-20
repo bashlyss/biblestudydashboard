@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import Form from '../common/Form';
 import { EmailInput, PasswordInput } from '../common/Fields';
 import UserActions from '../../actions/UserActions';
-import $ from 'jquery';
 
 class Login extends React.Component {
     submit(data) {

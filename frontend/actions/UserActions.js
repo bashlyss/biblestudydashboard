@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { stringify } from 'qs';
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTActions from './RESTActions';
 import SessionActions from './SessionActions';
@@ -11,8 +12,9 @@ class UserActions extends RESTActions {
     login(data, router) {
         return (dispatch) => {
             dispatch();
-            axios.post(`${this.baseRoute}login/`, data).then(
+            axios.post(`${this.baseRoute}login/`, stringify(data)).then(
                 response => {
+                    console.log(response)
                     SessionActions.setUser(response.data)
                     router.push('/');
                 }

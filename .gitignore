@@ -49,3 +49,4 @@ bundle.js
 
 *.pyc
 venv
+*.idea
