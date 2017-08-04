@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
@@ -12,6 +12,7 @@ class UserViewSet(AuthModelViewSet):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
 
+    # TODO handle update authorization
     def get_permissions(self):
         # allow non-authenticated user to create via POST
         return (AllowAny(),) if self.request.method == 'POST' else super().get_permissions()
@@ -23,7 +24,7 @@ def login(request):
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
-        login(request, user)
+        auth_login(request, user)
         return HttpResponseRedirect(reverse('home'))
     else:
         return HttpResponseForbidden()
@@ -31,5 +32,5 @@ def login(request):
 
 @require_POST
 def logout(request):
-    logout(request)
+    auth_logout(request)
     return HttpResponseRedirect(reverse('accounts:login'))

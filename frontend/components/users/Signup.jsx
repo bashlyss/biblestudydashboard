@@ -3,10 +3,15 @@ import { Link } from 'react-router';
 import Form from '../common/Form';
 import { Input, EmailInput, PasswordInput } from '../common/Fields';
 import UserActions from '../../actions/UserActions';
+import _ from 'lodash';
 
 class Signup extends React.Component {
     submit(data) {
-        UserActions.create(data).then( () => {
+        if (data.password !== data.password_confirmation)
+            // TODO raise a warning to the user
+            return;
+        const cleaned_data = _.omit(data, 'password_confirmation');
+        UserActions.create(cleaned_data).then( () => {
             this.context.router.push('/login/')
         });
     }
