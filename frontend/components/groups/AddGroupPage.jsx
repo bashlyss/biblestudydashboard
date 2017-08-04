@@ -1,24 +1,14 @@
 import React from 'react';
 import Form from '../common/Form';
 import { Input, TextInput, SelectInput } from '../common/Fields';
-import $ from 'jquery';
+import GroupActions from '../../actions/GroupActions';
 import _ from 'lodash';
 
 class AddGroupPage extends React.Component {
     submit(data) {
-        $.post('/groups', data, success => {
-            if (success) {
-                this.context.router.push('/')
-            }
-        });
-    }
-    getUsers(input, callback) {
-        $.get('/users', {}, results => {
-            callback(null, {
-              options: _.map(results, user => ({value: user.id, label: user.email})),
-              complete: true,
-            });
-        });
+        GroupActions.create(data);
+        // TODO navigate on success
+        //this.context.router.push('/')
     }
     render() {
         return (
@@ -27,8 +17,8 @@ class AddGroupPage extends React.Component {
             <TextInput title="Description" name="description" required />
             <SelectInput
               title="Users"
-              name="user_ids"
-              loadOptions={this.getUsers}
+              name="users"
+              options={_.map(this.props.users.objects, user => ({value: user.id, label: user.email}))}
               multi={true}
               allowCreate={true}
               required
@@ -39,6 +29,6 @@ class AddGroupPage extends React.Component {
 }
 AddGroupPage.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default AddGroupPage;

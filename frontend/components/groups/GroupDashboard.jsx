@@ -83,7 +83,7 @@ class GroupDashboard extends React.Component {
             <AddCommentForm
               type="Group"
               parentId={this.props.groupId}
-              updateAfterAdd={this.addRow.bind(this)}
+              updateAfterAdd={this.addRow}
             />
           </div>
         );

@@ -14,7 +14,6 @@ class UserActions extends RESTActions {
             dispatch();
             axios.post(`${this.baseRoute}login/`, stringify(data)).then(
                 response => {
-                    console.log(response)
                     SessionActions.setUser(response.data)
                     router.push('/');
                 }

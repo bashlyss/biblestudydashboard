@@ -7,9 +7,9 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import GroupListContainer from './components/containers/GroupListContainer';
 import GroupDetailContainer from './components/containers/GroupDetailContainer';
+import AddGroupContainer from './components/containers/AddGroupContainer';
 import NotFound from './components/error/NotFound';
 import GroupBase from './components/groups/GroupBase';
-import AddGroupPage from './components/groups/AddGroupPage';
 import ViewDocument from './components/shared/ViewDocument';
 import UploadDocument from './components/shared/UploadDocument';
 import Login from './components/users/Login';
@@ -23,7 +23,7 @@ const Routes = (
       <IndexRoute component={GroupListContainer} />
       <Route path="login/" component={Login} />
       <Route path="signup/" component={Signup} />
-      <Route path="addgroup/" component={AddGroupPage} />
+      <Route path="addgroup/" component={AddGroupContainer} />
       <Route path="mygroups/">
         <IndexRedirect to="/" />
         <Route path=":groupId/" component={GroupBase}>
@@ -40,7 +40,8 @@ const Routes = (
 )
 
 $(document).ready(function() {
-    axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+    axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+    axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8'
     ReactDOM.render(Routes, document.getElementById('main'));
 });

@@ -1,8 +1,9 @@
+import Cookies from 'js-cookie';
 import React from 'react';
 import Radium from 'radium';
 import Sidebar from './common/Sidebar';
 import UserActions from '../actions/UserActions';
-import $ from 'jquery';
+import _ from 'lodash';
 
 @Radium
 class App extends React.Component {
@@ -45,7 +46,7 @@ class App extends React.Component {
         UserActions.logout();
     }
     render() {
-        const loggedIn = $('#context').length > 0;
+        const loggedIn = !_.isUndefined(Cookies.get('authenticated'));
         return (
           <div style={this.styles.base}>
             <div style={this.styles.header}>
