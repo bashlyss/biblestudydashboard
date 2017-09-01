@@ -13,13 +13,7 @@ class UserStore extends RESTStore {
     }
 
     handleUpdateFromGroup(groups) {
-        this.objects = _.uniq(_.flatten(_.map(groups, group => group.users)));
-    }
-
-    static config = {
-        onSerialize: function(data) {
-            return _.merge({ users: data.objects}, _.omit(data, ['objects']));
-        }
+        this.handleUpdate(_.uniq(_.flatten(_.map(groups, group => group.users))));
     }
 }
 

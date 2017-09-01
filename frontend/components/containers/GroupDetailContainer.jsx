@@ -9,7 +9,7 @@ import GroupDashboard from '../groups/GroupDashboard';
 
 class GroupDetailContainer extends React.Component {
     componentDidMount() {
-        GroupActions.fetch();
+        GroupActions.fetchOne(this.props.params.groupId);
     }
     render() {
         return (

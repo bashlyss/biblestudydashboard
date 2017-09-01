@@ -22,6 +22,17 @@ class RESTActions {
         }
     }
 
+    fetchOne(id) {
+        return (dispatch) => {
+            dispatch(id);
+            return axios.get(`${this.baseRoute}${id}/`).then(
+                response => { this.addOne(response.data); }
+            ).catch(
+                errorMessage => { this.failed(errorMessage); }
+            );
+        }
+    }
+
     create(data) {
         console.log(data);
         return (dispatch) => {

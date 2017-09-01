@@ -9,15 +9,7 @@ class GroupStore extends RESTStore {
     }
 
     static getFor(id) {
-        console.log(id);
-        console.log(this.getState());
         return _.find(this.getState().objects, obj => obj.id == id) || {};
-    }
-
-    static config = {
-        onSerialize: function(data) {
-            return _.merge({ groups: data.objects}, _.omit(data, ['objects']));
-        }
     }
 }
 

@@ -6,7 +6,7 @@ import GroupActions from '../../actions/GroupActions';
 
 class GroupContainer extends React.Component {
     componentDidMount() {
-        GroupActions.fetch();
+       // GroupActions.fetch();
     }
     render() {
         return (

@@ -11,8 +11,8 @@ import UserActions from '../../actions/UserActions';
 
 class GroupContainer extends React.Component {
     componentDidMount() {
-        GroupActions.fetch();
-        UserActions.fetch();
+        //GroupActions.fetch();
+        //UserActions.fetch();
     }
     render() {
         return (
