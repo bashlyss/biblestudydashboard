@@ -34,7 +34,6 @@ class RESTActions {
     }
 
     create(data) {
-        console.log(data);
         return (dispatch) => {
             dispatch();
             return axios.post(this.baseRoute, stringify(data, { arrayFormat: 'repeat' })).then(

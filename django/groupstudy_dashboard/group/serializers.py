@@ -6,13 +6,21 @@ from . import models
 
 class GroupSerializer(serializers.ModelSerializer):
     users = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
+    is_admin = serializers.SerializerMethodField()
+
+    def get_is_admin(self, obj):
+        user = self.context['request'].user
+        return models.GroupMember.objects.filter(admin=True, group=obj, user=user).exists()
 
     def create(self, validated_data):
         user_data = validated_data.pop('users')
+        current_user = self.context['request'].user
+        if current_user not in user_data:
+            user_data.append(current_user)
         group = self.Meta.model.objects.create(**validated_data)
         for user in user_data:
             group_member = models.GroupMember.objects.create(group=group, user_id=user.id)
-            if user.id == self.context['request'].user.id:
+            if user.id == current_user.id:
                 group_member.admin = True
                 group_member.save()
         return group

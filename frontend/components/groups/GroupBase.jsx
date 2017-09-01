@@ -2,13 +2,9 @@ import React from 'react';
 import Radium from 'radium';
 import GroupHeaderLink from './GroupHeaderLink';
 import GroupActions from '../../actions/GroupActions';
-import $ from 'jquery';
 
 @Radium
 class GroupBase extends React.Component {
-    componentDidMount() {
-        GroupActions.fetch();
-    }
     get styles() {
         return {
             header: {
@@ -19,48 +15,29 @@ class GroupBase extends React.Component {
         }
     }
     get linkAddDocument() {
-        return _.replace('/mygroups/:groupid/document/', ':groupid', this.props.params.groupId);
+        return _.replace('/mygroups/:groupid/document/', ':groupid', this.props.group.id);
     }
     get linkGroupHome() {
-        return _.replace('/mygroups/:groupid/', ':groupid', this.props.params.groupId);
-    }
-    get linkCloseGroup() {
-        return _.replace('/groups/:groupId', ':groupId', this.props.params.groupId);
-    }
-    navigateHome() {
-        this.context.router.push('/');
-    }
-    resetActive() {
-        this.setState({ active: true });
+        return _.replace('/mygroups/:groupid/', ':groupid', this.props.group.id);
     }
     render() {
         return (
-          <div>
             <div style={this.styles.header}>
               <GroupHeaderLink to={this.linkGroupHome} name="Group Home" />
               <GroupHeaderLink to={this.linkAddDocument} name="Add Document" />
-              { this.state.isOwner && this.state.active &&
+              { this.props.group.is_admin && this.props.group.active &&
               <GroupHeaderLink
-                to={this.linkCloseGroup}
                 name="Close Group"
-                api
-                type="DELETE"
-                onComplete={this.navigateHome.bind(this)}
+                action={GroupActions.closeGroup}
+                id={this.props.group.id}
               />}
-              { this.state.isOwner && !this.state.active &&
+              { this.props.group.is_admin && !this.props.group.active &&
               <GroupHeaderLink
-                to={this.linkCloseGroup}
                 name="Enable Group"
-                api
-                type="PUT"
-                data={{activate: true}}
-                onComplete={this.resetActive.bind(this)}
+                action={GroupActions.enableGroup}
+                id={this.props.group.id}
               />}
             </div>
-            <div>
-              {this.props.children}
-            </div>
-          </div>
         );
     }
 }

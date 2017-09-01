@@ -7,26 +7,22 @@ import CommentStore from '../../stores/CommentStore';
 import GroupActions from '../../actions/GroupActions';
 import GroupDashboard from '../groups/GroupDashboard';
 
-class GroupDetailContainer extends React.Component {
-    componentDidMount() {
-        GroupActions.fetchOne(this.props.params.groupId);
-    }
-    render() {
-        return (
-          <AltContainer groupId={this.props.params.groupId} stores={{
-              group: props => ({
-                  store: GroupStore,
-                  value: GroupStore.getFor(props.groupId),
-              }),
-              comments: CommentStore,
-              docs: DocStore,
-              users: UserStore,
-            }}
-          >
-            <GroupDashboard />
-          </AltContainer>
-        );
-    }
-}
+const GroupDetailContainer = props =>
+  <AltContainer groupId={props.params.groupId} stores={{
+      group: sprops => ({
+          store: GroupStore,
+          value: GroupStore.getFor(sprops.groupId),
+      }),
+      // TODO getForGroup for comments, docs
+      comments: CommentStore,
+      docs: DocStore,
+      users: sprops => ({
+          store: UserStore,
+          value: UserStore.getForGroup(sprops.groupId),
+      }),
+    }}
+  >
+    <GroupDashboard />
+  </AltContainer>;
 
 export default GroupDetailContainer

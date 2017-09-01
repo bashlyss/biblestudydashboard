@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseServerError
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
@@ -23,11 +24,11 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('group.urls')),
-    url(r'^api/comments/', include('comments.urls')),
     url(r'^api/', include('accounts.urls')),
+    url(r'^api/comments/', include('comments.urls')),
     url(r'^api/uploads/', include('uploads.urls')),
     url(r'^login/', TemplateView.as_view(template_name='index.html'), name='login_view'),
-    url(r'^', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^', login_required(TemplateView.as_view(template_name='index.html')), name='home'),
 ]
 
 if settings.DEBUG:

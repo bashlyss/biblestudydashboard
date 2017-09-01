@@ -6,6 +6,11 @@ import _ from 'lodash';
 class GroupStore extends RESTStore {
     constructor() {
         super(GroupActions);
+
+        this.bindListeners({
+            handleFetchOne: GroupActions.ENABLE_GROUP,
+            handleFetchOne: GroupActions.CLOSE_GROUP,
+        })
     }
 
     static getFor(id) {

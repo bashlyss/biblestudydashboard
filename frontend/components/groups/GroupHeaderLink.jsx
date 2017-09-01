@@ -26,15 +26,10 @@ class GroupHeaderLink extends React.Component {
         };
     }
     navigate() {
-        if (!this.props.api) {
+        if (this.props.to) {
             this.context.router.push(this.props.to);
-        } else {
-            $.ajax({
-                url: this.props.to,
-                type: this.props.type,
-                success: this.props.onComplete,
-                data: this.props.data,
-            });
+        } else if (this.props.action) {
+            this.props.action(this.props.id);
         }
     }
     render() {

@@ -43,7 +43,7 @@ class App extends React.Component {
         }
     }
     logout() {
-        UserActions.logout();
+        UserActions.logout(this.context.router);
     }
     render() {
         const loggedIn = !_.isUndefined(Cookies.get('authenticated'));

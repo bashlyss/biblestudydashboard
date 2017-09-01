@@ -41,7 +41,6 @@ class GroupDashboard extends React.Component {
         };
     }
     addRow(comment) {
-        GroupActions.fetch();
     }
     render() {
         // TODO support editing #28
@@ -56,7 +55,7 @@ class GroupDashboard extends React.Component {
               <div style={this.styles.column1}>
                 <h5>Users</h5>
                 <ul style={this.styles.users}>
-                  {_.map(this.props.group.users, user => <UserRow key={user.id} {...user} />)}
+                  {_.map(this.props.users, user => <UserRow key={user.id} {...user} />)}
                 </ul>
               </div>
               <div style={this.styles.column2}>
@@ -65,7 +64,7 @@ class GroupDashboard extends React.Component {
                   {_.map(this.props.group.docs, shared => (
                     <SharedRow
                       key={'doc-'+ shared.id}
-                      groupId={this.props.params.groupId}
+                      groupId={this.props.group.id}
                       type="document"
                       {...shared}
                     />
@@ -82,7 +81,7 @@ class GroupDashboard extends React.Component {
             </ul>
             <AddCommentForm
               type="Group"
-              parentId={this.props.groupId}
+              parentId={this.props.group.id}
               updateAfterAdd={this.addRow}
             />
           </div>

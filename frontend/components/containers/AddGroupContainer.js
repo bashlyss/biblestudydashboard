@@ -9,18 +9,9 @@ import AddGroupPage from '../groups/AddGroupPage';
 import GroupActions from '../../actions/GroupActions';
 import UserActions from '../../actions/UserActions';
 
-class GroupContainer extends React.Component {
-    componentDidMount() {
-        //GroupActions.fetch();
-        //UserActions.fetch();
-    }
-    render() {
-        return (
-            <AltContainer stores={{ groups: GroupStore, users: UserStore }}>
-                <AddGroupPage />
-            </AltContainer>
-        );
-    }
-}
+const AddGroupContainer = () =>
+  <AltContainer stores={{ groups: GroupStore, users: UserStore }}>
+    <AddGroupPage />
+  </AltContainer>;
 
-export default GroupContainer;
+export default AddGroupContainer;

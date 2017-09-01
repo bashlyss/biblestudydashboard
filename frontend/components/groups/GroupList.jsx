@@ -5,7 +5,7 @@ import GroupItem from './GroupItem';
 
 class GroupList extends List {
     get objects() {
-        return this.props.groups.objects;
+        return _.values(this.props.groups.objects);
     }
     get title() {
         return 'My Groups';

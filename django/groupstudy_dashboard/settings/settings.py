@@ -57,10 +57,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'urls'
 
-# TODO create custom silent BasicAuthentication class https://richardtier.com/2014/03/06/110/
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     )
 }
@@ -136,4 +134,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),        
 ]
 
-LOGIN_URL = 'accounts:login'
+LOGIN_URL = 'login_view'

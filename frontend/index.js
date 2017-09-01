@@ -5,11 +5,11 @@ import axios from 'axios';
 import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import GroupListContainer from './components/containers/GroupListContainer';
+import GroupBaseContainer from './components/containers/GroupBaseContainer';
 import GroupDetailContainer from './components/containers/GroupDetailContainer';
+import GroupListContainer from './components/containers/GroupListContainer';
 import AddGroupContainer from './components/containers/AddGroupContainer';
 import NotFound from './components/error/NotFound';
-import GroupBase from './components/groups/GroupBase';
 import ViewDocument from './components/shared/ViewDocument';
 import UploadDocument from './components/shared/UploadDocument';
 import Login from './components/users/Login';
@@ -26,7 +26,7 @@ const Routes = (
       <Route path="addgroup/" component={AddGroupContainer} />
       <Route path="mygroups/">
         <IndexRedirect to="/" />
-        <Route path=":groupId/" component={GroupBase}>
+        <Route path=":groupId/" component={GroupBaseContainer}>
           <IndexRoute component={GroupDetailContainer} />
           <Route path="document/">
             <IndexRoute component={UploadDocument} />
