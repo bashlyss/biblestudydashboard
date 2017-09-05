@@ -15,8 +15,8 @@ class Comment(models.Model):
 
 
 class GroupComment(Comment):
-    group = models.ForeignKey('group.Group')
+    group = models.ForeignKey('group.Group', related_name='comments')
 
 
 class DocumentComment(Comment):
-    document = models.ForeignKey('uploads.Document')
+    document = models.ForeignKey('uploads.Document', related_name='comments')

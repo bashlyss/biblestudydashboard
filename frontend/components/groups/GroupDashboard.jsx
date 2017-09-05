@@ -75,12 +75,12 @@ class GroupDashboard extends React.Component {
             <h5>Comments</h5>
             <ul>
               {_.map(
-                  this.props.group.comments,
-                  comment => <CommentRow key={comment.id} {...comment} />)
+                  this.props.comments,
+                  comment => <CommentRow key={comment.id} {...comment} user={this.props.users[comment.user]} />)
               }
             </ul>
             <AddCommentForm
-              type="Group"
+              type="group"
               parentId={this.props.group.id}
               updateAfterAdd={this.addRow}
             />

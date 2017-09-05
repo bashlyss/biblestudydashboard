@@ -14,4 +14,4 @@ class BaseUpload(models.Model):
         abstract = True
 
 class Document(BaseUpload):
-    document = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    document = models.FileField(upload_to='static/uploads/%Y/%m/%d/')

@@ -36,7 +36,11 @@ class RESTActions {
     create(data) {
         return (dispatch) => {
             dispatch();
-            return axios.post(this.baseRoute, stringify(data, { arrayFormat: 'repeat' })).then(
+            let postData = stringify(data, { arrayFormat: 'repeat' });
+            if (data instanceof FormData) {
+                postData = data;
+            }
+            return axios.post(this.baseRoute, postData).then(
                 response => { this.addOne(response.data); }
             ).catch(
                 errorMessage => { this.failed(errorMessage); }

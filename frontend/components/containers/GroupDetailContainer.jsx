@@ -3,8 +3,7 @@ import AltContainer from 'alt-container';
 import GroupStore from '../../stores/GroupStore';
 import UserStore from '../../stores/UserStore';
 import DocStore from '../../stores/DocStore';
-import CommentStore from '../../stores/CommentStore';
-import GroupActions from '../../actions/GroupActions';
+import GroupCommentStore from '../../stores/GroupCommentStore';
 import GroupDashboard from '../groups/GroupDashboard';
 
 const GroupDetailContainer = props =>
@@ -13,8 +12,10 @@ const GroupDetailContainer = props =>
           store: GroupStore,
           value: GroupStore.getFor(sprops.groupId),
       }),
-      // TODO getForGroup for comments, docs
-      comments: CommentStore,
+      comments: sprops => ({
+          store: GroupCommentStore,
+          value: GroupCommentStore.getForGroup(sprops.groupId),
+      }),
       docs: DocStore,
       users: sprops => ({
           store: UserStore,

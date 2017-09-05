@@ -1,10 +1,10 @@
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTActions from './RESTActions';
 
-class CommentActions extends RESTActions {
+class GroupCommentActions extends RESTActions {
     constructor() {
         super('comments/groups');
     }
 }
 
-export default dispatcher.createActions(CommentActions);
+export default dispatcher.createActions(GroupCommentActions);

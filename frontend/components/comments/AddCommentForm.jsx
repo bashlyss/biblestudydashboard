@@ -1,14 +1,14 @@
 import React from 'react';
 import Form from '../common/Form';
 import { Input, TextInput } from '../common/Fields';
-import $ from 'jquery';
-import _ from 'lodash';
+import GroupCommentActions from '../../actions/GroupCommentActions';
 
 class AddCommentForm extends React.Component {
     submit(data) {
-        data.attached_to_type = this.props.type;
-        data.attached_to_id = this.props.parentId;
-        $.post('/comments', data, this.props.updateAfterAdd);
+        if (this.props.type === 'group') {
+            data.group = this.props.parentId;
+            GroupCommentActions.create(data);
+        }
     }
     render() {
         return (

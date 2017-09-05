@@ -34,13 +34,14 @@ class CommentRow extends React.Component {
           <li style={this.styles.base}>
             <div style={this.styles.header}>{this.props.title}</div>
             <div style={this.styles.description}>{this.props.comment}</div>
-            <div style={this.styles.user}>Posted by: {this.props.user.name}</div>
+            <div style={this.styles.user}>Posted by: {this.props.user.first_name} {this.props.user.last_name}</div>
           </li>
         );
     }
 }
+
 CommentRow.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default CommentRow;

@@ -2,10 +2,12 @@ from rest_framework import serializers
 
 from django.contrib.auth.models import User
 from . import models
+from comments.models import GroupComment
 
 
 class GroupSerializer(serializers.ModelSerializer):
     users = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
+    comments = serializers.PrimaryKeyRelatedField(many=True, queryset=GroupComment.objects.all())
     is_admin = serializers.SerializerMethodField()
 
     def get_is_admin(self, obj):
