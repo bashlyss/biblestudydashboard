@@ -10,8 +10,11 @@ class BaseUpload(models.Model):
     uploaded_by = models.ForeignKey('auth.User')
     uploaded_to = models.ForeignKey('group.Group')
 
+    def __str__(self):
+        return '{} by {} for {}'.format(self.title, self.uploaded_by, self.uploaded_to)
+
     class Meta:
         abstract = True
 
 class Document(BaseUpload):
-    document = models.FileField(upload_to='static/uploads/%Y/%m/%d/')
+    document = models.FileField(upload_to='uploads/%Y/%m/%d/')

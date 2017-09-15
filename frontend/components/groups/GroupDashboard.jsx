@@ -61,7 +61,7 @@ class GroupDashboard extends React.Component {
               <div style={this.styles.column2}>
                 <h5>Shared Content</h5>
                 <ul style={this.styles.shared}>
-                  {_.map(this.props.group.docs, shared => (
+                  {_.map(this.props.docs, shared => (
                     <SharedRow
                       key={'doc-'+ shared.id}
                       groupId={this.props.group.id}

@@ -1,8 +1,11 @@
 from rest_framework import serializers
 
+from comments.models import DocumentComment
 from . import models
 
 class DocumentSerializer(serializers.ModelSerializer):
+    comments = serializers.PrimaryKeyRelatedField(many=True, queryset=DocumentComment.objects.all())
+
     class Meta:
         model = models.Document
         fields = '__all__'

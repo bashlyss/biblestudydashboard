@@ -16,7 +16,10 @@ const GroupDetailContainer = props =>
           store: GroupCommentStore,
           value: GroupCommentStore.getForGroup(sprops.groupId),
       }),
-      docs: DocStore,
+      docs: sprops => ({
+          store: DocStore,
+          value: DocStore.getForGroup(sprops.groupId),
+      }),
       users: sprops => ({
           store: UserStore,
           value: UserStore.getForGroup(sprops.groupId),
@@ -26,4 +29,4 @@ const GroupDetailContainer = props =>
     <GroupDashboard />
   </AltContainer>;
 
-export default GroupDetailContainer
+export default GroupDetailContainer;

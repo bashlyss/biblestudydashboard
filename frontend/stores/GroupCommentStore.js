@@ -30,4 +30,4 @@ class GroupCommentStore extends RESTStore {
     }
 }
 
-export default dispatcher.createStore(GroupCommentStore, 'CommentStore');
+export default dispatcher.createStore(GroupCommentStore, 'GroupCommentStore');

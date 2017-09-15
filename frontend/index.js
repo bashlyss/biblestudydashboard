@@ -9,6 +9,7 @@ import GroupBaseContainer from './components/containers/GroupBaseContainer';
 import GroupDetailContainer from './components/containers/GroupDetailContainer';
 import GroupListContainer from './components/containers/GroupListContainer';
 import AddGroupContainer from './components/containers/AddGroupContainer';
+import DocumentContainer from './components/containers/DocumentContainer';
 import NotFound from './components/error/NotFound';
 import ViewDocument from './components/shared/ViewDocument';
 import UploadDocument from './components/shared/UploadDocument';
@@ -30,7 +31,7 @@ const Routes = (
           <IndexRoute component={GroupDetailContainer} />
           <Route path="document/">
             <IndexRoute component={UploadDocument} />
-            <Route path=":id/" component={ViewDocument} />
+            <Route path=":id/" component={DocumentContainer} />
           </Route>
         </Route>
       </Route>
