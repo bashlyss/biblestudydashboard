@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTStore from './RESTStore';
 import DocActions from '../actions/DocActions';
 import GroupActions from '../actions/GroupActions';
-import _ from 'lodash';
 
 class DocStore extends RESTStore {
     constructor() {
@@ -30,7 +30,7 @@ class DocStore extends RESTStore {
     }
 
     static getFor(id) {
-        return _.find(this.getState().objects, obj => obj.id == id) || {};
+        return _.find(this.getState().objects, obj => obj.id === id) || {};
     }
 }
 

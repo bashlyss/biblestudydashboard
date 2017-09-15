@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTStore from './RESTStore';
 import GroupCommentActions from '../actions/GroupCommentActions';
 import GroupActions from '../actions/GroupActions';
-import _ from 'lodash';
 
 class GroupCommentStore extends RESTStore {
     constructor() {

@@ -1,4 +1,4 @@
-import dispatcher from '../dispatcher/Dispatcher';
+/* globals FormData */
 import axios from 'axios';
 import { stringify } from 'qs';
 
@@ -15,22 +15,22 @@ class RESTActions {
         return (dispatch) => {
             dispatch();
             return axios.get(this.baseRoute).then(
-                response => { this.update(response.data); }
+                (response) => { this.update(response.data); },
             ).catch(
-                errorMessage  => { this.failed(errorMessage); }
+                (errorMessage) => { this.failed(errorMessage); },
             );
-        }
+        };
     }
 
     fetchOne(id) {
         return (dispatch) => {
             dispatch(id);
             return axios.get(`${this.baseRoute}${id}/`).then(
-                response => { this.addOne(response.data); }
+                (response) => { this.addOne(response.data); },
             ).catch(
-                errorMessage => { this.failed(errorMessage); }
+                (errorMessage) => { this.failed(errorMessage); },
             );
-        }
+        };
     }
 
     create(data) {
@@ -41,11 +41,11 @@ class RESTActions {
                 postData = data;
             }
             return axios.post(this.baseRoute, postData).then(
-                response => { this.addOne(response.data); }
+                (response) => { this.addOne(response.data); },
             ).catch(
-                errorMessage => { this.failed(errorMessage); }
+                (errorMessage) => { this.failed(errorMessage); },
             );
-        }
+        };
     }
 
     addOne(object) {

@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTStore from './RESTStore';
 import DocumentCommentActions from '../actions/DocumentCommentActions';
 import DocActions from '../actions/DocActions';
-import _ from 'lodash';
 
 class DocumentCommentStore extends RESTStore {
     constructor() {

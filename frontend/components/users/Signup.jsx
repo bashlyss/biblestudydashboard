@@ -9,10 +9,10 @@ class Signup extends React.Component {
     submit(data) {
         if (data.password !== data.password_confirmation)
             // TODO raise a warning to the user
-            return;
+            { return; }
         const cleaned_data = _.omit(data, 'password_confirmation');
-        UserActions.create(cleaned_data).then( () => {
-            this.context.router.push('/login/')
+        UserActions.create(cleaned_data).then(() => {
+            this.context.router.push('/login/');
         });
     }
     render() {
@@ -27,7 +27,7 @@ class Signup extends React.Component {
             </Form>
             <span>Already have an account? <Link to="/login/">Login here</Link></span>
           </div>
-        )
+        );
     }
 }
 Signup.contextTypes = {

@@ -4,7 +4,9 @@ import GroupStore from '../../stores/GroupStore';
 import GroupBase from '../groups/GroupBase';
 
 const GroupBaseContainer = props =>
-  <AltContainer groupId={props.params.groupId} stores={{
+  (<AltContainer
+    groupId={props.params.groupId}
+    stores={{
       group: sprops => ({
           store: GroupStore,
           value: GroupStore.getFor(sprops.groupId),
@@ -13,6 +15,6 @@ const GroupBaseContainer = props =>
   >
     <GroupBase />
     {props.children}
-  </AltContainer>;
+  </AltContainer>);
 
 export default GroupBaseContainer;

@@ -27,7 +27,7 @@ class GroupItem extends React.Component {
                 ':hover': {
                     border: '2px solid rgb(75, 78, 109)',
                     color: 'rgb(75, 78, 109)',
-                }
+                },
             },
             header: {
                 fontSize: '20px',
@@ -37,7 +37,7 @@ class GroupItem extends React.Component {
             description: {
                 fontSize: '14px',
                 display: 'inline-block',
-            }
+            },
         };
     }
     viewGroup() {
@@ -45,7 +45,10 @@ class GroupItem extends React.Component {
     }
     render() {
         return (
-          <li style={[this.styles.base, !this.props.active && this.styles.disabled]} onClick={this.viewGroup}>
+          <li
+            style={[this.styles.base, !this.props.active && this.styles.disabled]}
+            onClick={this.viewGroup}
+          >
             <div style={this.styles.header}>{this.props.name}</div>
             <div style={this.styles.description}>{this.props.description}</div>
           </li>
@@ -54,6 +57,6 @@ class GroupItem extends React.Component {
 }
 GroupItem.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default GroupItem;

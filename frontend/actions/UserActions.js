@@ -13,24 +13,24 @@ class UserActions extends RESTActions {
         return (dispatch) => {
             dispatch();
             axios.post(`${this.baseRoute}login/`, stringify(data)).then(
-                response => {
-                    SessionActions.setUser(response.data.id)
+                (response) => {
+                    SessionActions.setUser(response.data.id);
                     router.push('/');
-                }
-            )
-        }
+                },
+            );
+        };
     }
 
     logout(router) {
         return (dispatch) => {
             dispatch();
             axios.post(`${this.baseRoute}logout/`).then(
-                response => {
+                () => {
                     SessionActions.unsetUser();
                     router.push('/login/');
-                }
-            )
-        }
+                },
+            );
+        };
     }
 }
 

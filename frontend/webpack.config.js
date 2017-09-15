@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     context: path.resolve(__dirname),
@@ -6,20 +6,20 @@ module.exports = {
     entry: ['./index.js'],
     output: {
         path: path.resolve(__dirname, '..', 'django', 'groupstudy_dashboard', 'static'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
     module: {
         loaders: [
-          {
-            test: /.jsx?$/,
-            loader: 'babel',
-            exclude: /node_modules/,
-            query: {
-              plugins: ['transform-decorators-legacy'],
-              presets: ['es2015', 'stage-2', 'react'],
-            }
-          }
-        ]
+            {
+                test: /.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                query: {
+                    plugins: ['transform-decorators-legacy'],
+                    presets: ['es2015', 'stage-2', 'react'],
+                },
+            },
+        ],
     },
     resolve: {
         modulesDirectories: ['node_modules'],

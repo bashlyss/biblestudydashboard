@@ -1,9 +1,8 @@
+import _ from 'lodash';
 import dispatcher from '../dispatcher/Dispatcher';
 import RESTStore from './RESTStore';
-import GroupStore from './GroupStore';
 import UserActions from '../actions/UserActions';
 import GroupActions from '../actions/GroupActions';
-import _ from 'lodash';
 
 class UserStore extends RESTStore {
     constructor() {

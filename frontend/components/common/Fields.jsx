@@ -16,13 +16,13 @@ let Input = React.createClass({
               textAlign: 'right',
               width: '30%',
               display: 'inline-block',
-              paddingRight: '5px',  
+              paddingRight: '5px',
             },
             input: {
               width: '60%',
               display: 'inline-block',
-            }
-        }
+            },
+        };
     },
     changeValue(event) {
         if (this.props.type === 'checkbox') {
@@ -38,8 +38,8 @@ let Input = React.createClass({
         this.input.value = '';
     },
     render() {
-        const className = 'form-group' + (this.props.className || ' ') +
-          (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+        const className = `form-group${this.props.className || ' '
+          }${this.showRequired() ? 'required' : this.showError() ? 'error' : ''}`;
 
          // An error message is returned ONLY if the component is invalid
          // or the server has returned an error message
@@ -50,7 +50,7 @@ let Input = React.createClass({
                {this.props.title}
              </label>
              <input
-               ref={input => { this.input = input; }}
+               ref={(input) => { this.input = input; }}
                style={this.styles().input}
                type={this.props.type || 'text'}
                name={this.props.name}
@@ -59,7 +59,7 @@ let Input = React.createClass({
              />
            </div>
         );
-    }
+    },
 });
 Input = Radium(Input);
 
@@ -75,15 +75,15 @@ let SelectInput = React.createClass({
             label: {
               width: '30%',
               display: 'inline-block',
-              paddingRight: '5px',  
+              paddingRight: '5px',
               textAlign: 'right',
             },
             input: {
               textAlign: 'initial',
               width: '60%',
               display: 'inline-block',
-            }
-        }
+            },
+        };
     },
 
     changeValue(options) {
@@ -91,11 +91,11 @@ let SelectInput = React.createClass({
     },
 
     render() {
-        const className = 'form-group' + (this.props.className || ' ') +
-          (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+        const className = `form-group${this.props.className || ' '
+          }${this.showRequired() ? 'required' : this.showError() ? 'error' : ''}`;
 
         const otherProps = _.omit(this.props, ['title', 'className', 'required']);
-        otherProps.className = "mybiblestudy";
+        otherProps.className = 'mybiblestudy';
         otherProps.onChange = this.changeValue;
         otherProps.value = this.getValue();
 
@@ -111,7 +111,7 @@ let SelectInput = React.createClass({
             {select}
           </div>
         );
-    }
+    },
 
 });
 SelectInput = Radium(SelectInput);
@@ -128,14 +128,14 @@ let TextInput = React.createClass({
             label: {
               width: '30%',
               display: 'inline-block',
-              paddingRight: '5px',  
+              paddingRight: '5px',
               textAlign: 'right',
             },
             input: {
               width: '60%',
               display: 'inline-block',
-            }
-        }
+            },
+        };
     },
 
     changeValue(event) {
@@ -148,8 +148,8 @@ let TextInput = React.createClass({
     },
 
     render() {
-      const className = 'form-group' + (this.props.className || ' ') +
-        (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+      const className = `form-group${this.props.className || ' '
+        }${this.showRequired() ? 'required' : this.showError() ? 'error' : ''}`;
 
       return (
         <div style={this.styles().container} className={className}>
@@ -157,39 +157,30 @@ let TextInput = React.createClass({
             {this.props.title}
           </label>
           <textarea
-            ref={input => { this.input = input; }}
+            ref={(input) => { this.input = input; }}
             style={this.styles().input}
             name={this.props.name}
             onChange={this.changeValue}
-            value={this.getValue()} />
+            value={this.getValue()}
+          />
         </div>
       );
-    }
+    },
 });
 TextInput = Radium(TextInput);
 
-class EmailInput extends React.Component {
-    render() {
-        return <Input
-          type="email"
-          validations="isEmail"
-          validationError="This is not a valid email"
-          {...this.props}
-        />;
-    }
-};
+const EmailInput = props => (
+  <Input
+    type="email"
+    validations="isEmail"
+    validationError="This is not a valid email"
+    {...props}
+  />
+);
 
-class PasswordInput extends React.Component {
-    render() {
-        return <Input type="password" {...this.props} />;
-    }
-};
+const PasswordInput = props => <Input type="password" {...props} />;
 
-class FileInput extends React.Component {
-    render() {
-        return <Input type="file" {...this.props} />;
-    }
-}
+const FileInput = props => <Input type="file" {...props} />;
 
 export {
     Input,

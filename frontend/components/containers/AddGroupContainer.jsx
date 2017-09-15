@@ -6,12 +6,10 @@ import AltContainer from 'alt-container';
 import GroupStore from '../../stores/GroupStore';
 import UserStore from '../../stores/UserStore';
 import AddGroupPage from '../groups/AddGroupPage';
-import GroupActions from '../../actions/GroupActions';
-import UserActions from '../../actions/UserActions';
 
 const AddGroupContainer = () =>
-  <AltContainer stores={{ groups: GroupStore, users: UserStore }}>
+  (<AltContainer stores={{ groups: GroupStore, users: UserStore }}>
     <AddGroupPage />
-  </AltContainer>;
+  </AltContainer>);
 
 export default AddGroupContainer;

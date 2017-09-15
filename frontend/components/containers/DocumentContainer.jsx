@@ -5,7 +5,9 @@ import DocumentCommentStore from '../../stores/DocumentCommentStore';
 import ViewDocument from '../shared/ViewDocument';
 
 const DocumentContainer = props =>
-  <AltContainer id={props.params.id} stores={{
+  (<AltContainer
+    id={props.params.id}
+    stores={{
       doc: sprops => ({
           store: DocStore,
           value: DocStore.getFor(sprops.id),
@@ -17,6 +19,6 @@ const DocumentContainer = props =>
     }}
   >
     <ViewDocument />
-  </AltContainer>;
+  </AltContainer>);
 
 export default DocumentContainer;

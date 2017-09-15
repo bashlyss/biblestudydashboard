@@ -1,13 +1,10 @@
 import React from 'react';
 import Radium from 'radium';
-import { Link } from 'react-router';
-import $ from 'jquery';
 import _ from 'lodash';
 import UserRow from '../users/UserRow';
 import SharedRow from '../shared/SharedRow';
 import AddCommentForm from '../comments/AddCommentForm';
 import CommentRow from '../comments/CommentRow';
-import GroupActions from '../../actions/GroupActions'
 
 @Radium
 class GroupDashboard extends React.Component {
@@ -37,14 +34,10 @@ class GroupDashboard extends React.Component {
             },
             name: {
                 textTransform: 'capitalize',
-            }
+            },
         };
     }
-    addRow(comment) {
-    }
     render() {
-        // TODO support editing #28
-        const editState = _.pick(this.state, ['name', 'description', 'id']);
         return (
           <div>
             <div style={this.styles.header}>
@@ -63,7 +56,7 @@ class GroupDashboard extends React.Component {
                 <ul style={this.styles.shared}>
                   {_.map(this.props.docs, shared => (
                     <SharedRow
-                      key={'doc-'+ shared.id}
+                      key={`doc-${shared.id}`}
                       groupId={this.props.group.id}
                       type="document"
                       {...shared}
@@ -76,13 +69,18 @@ class GroupDashboard extends React.Component {
             <ul>
               {_.map(
                   this.props.comments,
-                  comment => <CommentRow key={comment.id} {...comment} user={this.props.users[comment.user]} />)
-              }
+                  comment => (
+                    <CommentRow
+                      key={comment.id}
+                      {...comment}
+                      user={this.props.users[comment.user]}
+                    />
+                  )
+              )}
             </ul>
             <AddCommentForm
               type="group"
               parentId={this.props.group.id}
-              updateAfterAdd={this.addRow}
             />
           </div>
         );

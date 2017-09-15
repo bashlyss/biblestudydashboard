@@ -7,7 +7,9 @@ import GroupCommentStore from '../../stores/GroupCommentStore';
 import GroupDashboard from '../groups/GroupDashboard';
 
 const GroupDetailContainer = props =>
-  <AltContainer groupId={props.params.groupId} stores={{
+  (<AltContainer
+    groupId={props.params.groupId}
+    stores={{
       group: sprops => ({
           store: GroupStore,
           value: GroupStore.getFor(sprops.groupId),
@@ -27,6 +29,6 @@ const GroupDetailContainer = props =>
     }}
   >
     <GroupDashboard />
-  </AltContainer>;
+  </AltContainer>);
 
 export default GroupDetailContainer;

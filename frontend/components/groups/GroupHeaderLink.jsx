@@ -1,6 +1,5 @@
 import React from 'react';
 import Radium from 'radium';
-import $ from 'jquery';
 
 @Radium
 class GroupHeaderLink extends React.Component {
@@ -20,7 +19,7 @@ class GroupHeaderLink extends React.Component {
                 marginRight: '20px',
                 ':hover': {
                     background: '#ffffff',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
                 },
             },
         };
@@ -37,12 +36,12 @@ class GroupHeaderLink extends React.Component {
           <div style={this.styles.row} onClick={this.navigate}>
             {this.props.name}
           </div>
-        )
+        );
     }
 }
 
 GroupHeaderLink.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default GroupHeaderLink;

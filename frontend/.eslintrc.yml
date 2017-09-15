@@ -1,0 +1,18 @@
+extends: './node_modules/eslint-config-airbnb/index.js'
+
+rules:
+    indent:
+      - 0 # TODO get this working with jsx/indent
+      - 4
+    class-methods-use-this: 0
+    react/prop-types: 0 # TODO Turn back on once initial eslint pass is done
+    no-warning-comments: 1
+    comma-dangle:
+      - 2
+      - always-multiline
+
+parser: babel-eslint
+
+
+globals:
+    document: true

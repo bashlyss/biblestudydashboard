@@ -16,7 +16,7 @@ class UserRow extends React.Component {
             },
             description: {
                 fontSize: '12px',
-            }
+            },
         };
     }
     render() {
@@ -25,7 +25,7 @@ class UserRow extends React.Component {
             <div style={this.styles.header}>{this.props.name}</div>
             <div style={this.styles.description}>{this.props.email}</div>
           </li>
-        )
+        );
     }
 }
 

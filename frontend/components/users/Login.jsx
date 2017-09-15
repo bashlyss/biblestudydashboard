@@ -17,13 +17,12 @@ class Login extends React.Component {
             </Form>
             <span>Don't have an account yet? <Link to="/signup/">Sign up here</Link></span>
           </div>
-        )
+        );
     }
-
 }
 
 Login.contextTypes = {
     router: React.PropTypes.object.isRequired,
-}
+};
 
 export default Login;

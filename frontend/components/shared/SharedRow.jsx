@@ -29,7 +29,7 @@ class SharedRow extends React.Component {
             description: {
                 fontSize: '14px',
                 display: 'inline-block',
-            }
+            },
         };
     }
     viewItem() {
@@ -50,6 +50,6 @@ class SharedRow extends React.Component {
 }
 SharedRow.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default SharedRow;

@@ -6,35 +6,30 @@ class RESTStore {
         this.errorMessage = null;
         this.fetching = false;
         this.fetched = false;
-        this._actionCreator = actionCreator;
+        this.actionCreator = actionCreator;
 
         this.bindListeners({
             handleUpdate: actionCreator.UPDATE,
             handleFetch: actionCreator.FETCH,
             handleFetchOne: actionCreator.FETCH_ONE,
             handleFailed: actionCreator.FAILED,
-            handleAddOne: actionCreator.ADD_ONE
-        })
-
+            handleAddOne: actionCreator.ADD_ONE,
+        });
     }
 
     static config = {
-        getState: function () {
-            function getState(state) {
-                if (Array.isArray(state)) {
-                    return state.slice();
-                } else if (_.isObject(state)) {
-                    if (!state.fetching && !state.fetched) {
-                        setTimeout(this.state._actionCreator.fetch, 100);
-                    }
-                    return _.assign({}, state);
+        getState: (state) => {
+            if (Array.isArray(state)) {
+                return state.slice();
+            } else if (_.isObject(state)) {
+                if (!state.fetching && !state.fetched) {
+                    setTimeout(state.actionCreator.fetch, 100);
                 }
-
-                return state;
+                return _.assign({}, state);
             }
 
-            return getState;
-        }()
+            return state;
+        },
     }
 
     handleUpdate(objects) {
@@ -56,7 +51,7 @@ class RESTStore {
 
     handleFailed(errorMessage) {
         this.errorMessage = errorMessage;
-        this.fetching = false
+        this.fetching = false;
         this.fetched = true;
     }
 

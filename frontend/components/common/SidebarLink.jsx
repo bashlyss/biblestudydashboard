@@ -19,7 +19,7 @@ class SidebarLink extends React.Component {
                 ':hover': {
                     background: '#a1a6b4',
                     color: '#4b4e6d',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
                 },
             },
         };
@@ -32,12 +32,12 @@ class SidebarLink extends React.Component {
           <li style={this.styles.row} onClick={this.navigate}>
             {this.props.name}
           </li>
-        )
+        );
     }
 }
 
 SidebarLink.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default SidebarLink;

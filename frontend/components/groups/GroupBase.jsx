@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import _ from 'lodash';
 import GroupHeaderLink from './GroupHeaderLink';
 import GroupActions from '../../actions/GroupActions';
 
@@ -12,7 +13,7 @@ class GroupBase extends React.Component {
                 marginBottom: '15px',
                 padding: '5px',
             },
-        }
+        };
     }
     get linkAddDocument() {
         return _.replace('/mygroups/:groupid/document/', ':groupid', this.props.group.id);
@@ -22,27 +23,27 @@ class GroupBase extends React.Component {
     }
     render() {
         return (
-            <div style={this.styles.header}>
-              <GroupHeaderLink to={this.linkGroupHome} name="Group Home" />
-              <GroupHeaderLink to={this.linkAddDocument} name="Add Document" />
-              { this.props.group.is_admin && this.props.group.active &&
+          <div style={this.styles.header}>
+            <GroupHeaderLink to={this.linkGroupHome} name="Group Home" />
+            <GroupHeaderLink to={this.linkAddDocument} name="Add Document" />
+            { this.props.group.is_admin && this.props.group.active &&
               <GroupHeaderLink
                 name="Close Group"
                 action={GroupActions.closeGroup}
                 id={this.props.group.id}
               />}
-              { this.props.group.is_admin && !this.props.group.active &&
+            { this.props.group.is_admin && !this.props.group.active &&
               <GroupHeaderLink
                 name="Enable Group"
                 action={GroupActions.enableGroup}
                 id={this.props.group.id}
               />}
-            </div>
+          </div>
         );
     }
 }
 GroupBase.contextTypes = {
     router: React.PropTypes.object,
-}
+};
 
 export default GroupBase;

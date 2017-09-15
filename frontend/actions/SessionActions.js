@@ -1,3 +1,4 @@
+/* globals sessionStorage */
 import dispatcher from '../dispatcher/Dispatcher';
 
 class SessionActions {

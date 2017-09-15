@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
                 padding: 0,
                 borderTop: '1px solid #ffffff',
             },
-        }
+        };
     }
     render() {
         return (
@@ -30,8 +30,8 @@ class Sidebar extends React.Component {
               <SidebarLink to="/addgroup/" name="Form a new group" />
             </ul>
           </div>
-        )
-    }    
+        );
+    }
 }
 
 export default Sidebar;

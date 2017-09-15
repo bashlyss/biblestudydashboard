@@ -8,4 +8,4 @@ bundle.js
 venv
 
 db.sqlite3
-/media/
+/django/groupstudy_dashboard/media/

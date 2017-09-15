@@ -1,12 +1,16 @@
 import Cookies from 'js-cookie';
 import React from 'react';
 import Radium from 'radium';
+import _ from 'lodash';
 import Sidebar from './common/Sidebar';
 import UserActions from '../actions/UserActions';
-import _ from 'lodash';
 
 @Radium
 class App extends React.Component {
+    constructor() {
+        super();
+        this.logout = this.logout.bind(this);
+    }
     get styles() {
         return {
             base: {
@@ -40,7 +44,7 @@ class App extends React.Component {
                 right: '20px',
                 top: '20px',
             },
-        }
+        };
     }
     logout() {
         UserActions.logout(this.context.router);
@@ -53,7 +57,7 @@ class App extends React.Component {
               <h1>My Group Study</h1>
               <h3>A place to share resources and discuss</h3>
               {loggedIn &&
-              <button style={this.styles.button} onClick={this.logout.bind(this)}>Log Out</button>}
+              <button style={this.styles.button} onClick={this.logout}>Log Out</button>}
             </div>
             <div style={this.styles.main}>
               {loggedIn && <Sidebar />}
@@ -63,6 +67,10 @@ class App extends React.Component {
         );
     }
 }
+
+App.propTypes = {
+    children: React.PropTypes.node.isRequired,
+};
 
 App.contextTypes = {
     router: React.PropTypes.object,

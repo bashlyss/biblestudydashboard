@@ -1,14 +1,13 @@
 import React from 'react';
 
-class NotFound extends React.Component {
-    render() {
-        return (
-          <div className="error">
-            <h1>Not Found</h1>
-            <p>The page you are looking for could not be found. Please check the url and make sure you are on the correct page.</p>
-          </div>
-        );
-    }
-}
+const NotFound = () => (
+  <div className="error">
+    <h1>Not Found</h1>
+    <p>
+      The page you are looking for could not be found.
+      Please check the url and make sure you are on the correct page.
+    </p>
+  </div>
+);
 
 export default NotFound;

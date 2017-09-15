@@ -5,24 +5,34 @@ import GroupCommentActions from '../../actions/GroupCommentActions';
 import DocumentCommentActions from '../../actions/DocumentCommentActions';
 
 class AddCommentForm extends React.Component {
+    constructor() {
+        super();
+        this.submit = this.submit.bind(this);
+    }
     submit(data) {
+        const submitData = data;
         if (this.props.type === 'group') {
-            data.group = this.props.parentId;
-            GroupCommentActions.create(data);
+            submitData.group = this.props.parentId;
+            GroupCommentActions.create(submitData);
         }
         if (this.props.type === 'doc') {
-            data.document = this.props.parentId;
-            DocumentCommentActions.create(data);
+            submitData.document = this.props.parentId;
+            DocumentCommentActions.create(submitData);
         }
     }
     render() {
         return (
-          <Form submit={this.submit.bind(this)} title="Add a comment" clearOnSubmit>
+          <Form submit={this.submit} title="Add a comment" clearOnSubmit>
             <Input title="Title" name="title" />
             <TextInput title="Comment" name="comment" required />
           </Form>
-        )
+        );
     }
 }
+
+AddCommentForm.propTypes = {
+    type: React.PropTypes.oneOf(['group', 'doc']).isRequired,
+    parentId: React.PropTypes.number.isRequired,
+};
 
 export default AddCommentForm;
