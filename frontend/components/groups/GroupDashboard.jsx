@@ -1,13 +1,23 @@
 import React from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
+
+import GroupCommentActions from '../../actions/GroupCommentActions';
+
 import UserRow from '../users/UserRow';
 import SharedRow from '../shared/SharedRow';
 import AddCommentForm from '../comments/AddCommentForm';
 import CommentRow from '../comments/CommentRow';
 
-@Radium
 class GroupDashboard extends React.Component {
+    constructor() {
+        super();
+        this.onSubmitComment = this.onSubmitComment.bind(this);
+    }
+    onSubmitComment(data) {
+        data.group = this.props.group.id; // eslint-disable-line no-param-reassign
+        GroupCommentActions.create(data);
+    }
     get styles() {
         return {
             base: {
@@ -79,12 +89,11 @@ class GroupDashboard extends React.Component {
               )}
             </ul>
             <AddCommentForm
-              type="group"
-              parentId={this.props.group.id}
+              onSubmit={this.onSubmitComment}
             />
           </div>
         );
     }
 }
 
-export default GroupDashboard;
+export default Radium(GroupDashboard);

@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-@Radium
 class UserRow extends React.Component {
     get styles() {
         return {
@@ -29,4 +28,4 @@ class UserRow extends React.Component {
     }
 }
 
-export default UserRow;
+export default Radium(UserRow);

@@ -1,6 +1,5 @@
 import React from 'react';
 import AltContainer from 'alt-container';
-import GroupStore from '../../stores/GroupStore';
 import UserStore from '../../stores/UserStore';
 import DocStore from '../../stores/DocStore';
 import GroupCommentStore from '../../stores/GroupCommentStore';
@@ -8,12 +7,8 @@ import GroupDashboard from '../groups/GroupDashboard';
 
 const GroupDetailContainer = props =>
   (<AltContainer
-    groupId={props.params.groupId}
+    groupId={props.group.id}
     stores={{
-      group: sprops => ({
-          store: GroupStore,
-          value: GroupStore.getFor(sprops.groupId),
-      }),
       comments: sprops => ({
           store: GroupCommentStore,
           value: GroupCommentStore.getForGroup(sprops.groupId),
@@ -28,7 +23,7 @@ const GroupDetailContainer = props =>
       }),
     }}
   >
-    <GroupDashboard />
+    <GroupDashboard group={props.group} />
   </AltContainer>);
 
 export default GroupDetailContainer;

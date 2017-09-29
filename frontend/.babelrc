@@ -1,0 +1,4 @@
+{
+    "plugins": ["transform-react-jsx", "babel-plugin-webpack-alias"],
+    "presets": ["es2015", "stage-1"],
+}

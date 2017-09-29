@@ -1,3 +1,4 @@
+/* globals FormData */
 import React from 'react';
 import _ from 'lodash';
 import Form from '../common/Form';

@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 
-@Radium
 class SharedRow extends React.Component {
     constructor() {
         super();
@@ -52,4 +51,4 @@ SharedRow.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default SharedRow;
+export default Radium(SharedRow);

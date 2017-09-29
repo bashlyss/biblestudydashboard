@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 
-@Radium
 class GroupItem extends React.Component {
     constructor() {
         super();
@@ -59,4 +58,4 @@ GroupItem.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default GroupItem;
+export default Radium(GroupItem);

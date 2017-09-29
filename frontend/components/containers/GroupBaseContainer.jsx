@@ -5,7 +5,7 @@ import GroupBase from '../groups/GroupBase';
 
 const GroupBaseContainer = props =>
   (<AltContainer
-    groupId={props.params.groupId}
+    groupId={parseInt(props.params.groupId, 10)}
     stores={{
       group: sprops => ({
           store: GroupStore,

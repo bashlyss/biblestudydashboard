@@ -13,7 +13,7 @@ class GroupStore extends RESTStore {
     }
 
     static getFor(id) {
-        return _.find(this.getState().objects, obj => obj.id === id) || {};
+        return _.find(this.getState().objects, { id }) || {};
     }
 }
 

@@ -3,7 +3,6 @@ import { Form } from 'formsy-react';
 import Radium from 'radium';
 import _ from 'lodash';
 
-@Radium
 class MyForm extends React.Component {
     constructor() {
         super();
@@ -100,4 +99,4 @@ MyForm.defaultProps = {
     submit: _.noop,
 };
 
-export default MyForm;
+export default Radium(MyForm);

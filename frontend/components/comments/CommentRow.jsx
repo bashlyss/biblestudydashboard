@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-@Radium
 class CommentRow extends React.Component {
     get styles() {
         return {
@@ -54,4 +53,4 @@ CommentRow.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default CommentRow;
+export default Radium(CommentRow);

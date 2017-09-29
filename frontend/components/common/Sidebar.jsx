@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import SidebarLink from './SidebarLink';
 
-@Radium
 class Sidebar extends React.Component {
     get styles() {
         return {
@@ -34,4 +33,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+export default Radium(Sidebar);

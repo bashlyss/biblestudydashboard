@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-@Radium
 class GroupHeaderLink extends React.Component {
     constructor() {
         super();
@@ -44,4 +43,4 @@ GroupHeaderLink.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default GroupHeaderLink;
+export default Radium(GroupHeaderLink);

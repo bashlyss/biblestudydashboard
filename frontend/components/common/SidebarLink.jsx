@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-@Radium
 class SidebarLink extends React.Component {
     constructor() {
         super();
@@ -40,4 +39,4 @@ SidebarLink.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default SidebarLink;
+export default Radium(SidebarLink);

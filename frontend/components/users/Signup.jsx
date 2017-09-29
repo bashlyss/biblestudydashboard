@@ -1,24 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Form from '../common/Form';
-import { Input, EmailInput, PasswordInput } from '../common/Fields';
-import UserActions from '../../actions/UserActions';
 import _ from 'lodash';
 
+import Form from '../common/Form';
+import { Input, EmailInput, PasswordInput } from '../common/Fields';
+
+import UserActions from '../../actions/UserActions';
+
 class Signup extends React.Component {
+    constructor() {
+        super();
+        this.submit = this.submit.bind(this);
+    }
     submit(data) {
-        if (data.password !== data.password_confirmation)
+        if (data.password !== data.password_confirmation) {
             // TODO raise a warning to the user
-            { return; }
-        const cleaned_data = _.omit(data, 'password_confirmation');
-        UserActions.create(cleaned_data).then(() => {
+            return;
+        }
+        const cleanedData = _.omit(data, 'password_confirmation');
+        UserActions.create(cleanedData).then(() => {
             this.context.router.push('/login/');
         });
     }
     render() {
         return (
           <div>
-            <Form submit={this.submit.bind(this)} title="Register to join groups">
+            <Form submit={this.submit} title="Register to join groups">
               <Input id="fname" title="First Name" name="first_name" required />
               <Input id="lname" title="Last Name" name="last_name" required />
               <EmailInput id="email" title="Email" name="email" required />

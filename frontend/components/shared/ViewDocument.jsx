@@ -1,11 +1,19 @@
 import React from 'react';
-import Radium from 'radium';
-import AddCommentForm from '../comments/AddCommentForm';
-import CommentRow from '../comments/CommentRow';
 import _ from 'lodash';
 
+import DocumentCommentActions from '../../actions/DocumentCommentActions';
+
+import AddCommentForm from '../comments/AddCommentForm';
+import CommentRow from '../comments/CommentRow';
+
 class ViewDocument extends React.Component {
-    addRow(comment) {
+    constructor() {
+        super();
+        this.onSubmitComment = this.onSubmitComment.bind(this);
+    }
+    onSubmitComment(data) {
+        data.document = this.props.doc.id; // eslint-disable-line no-param-reassign
+        DocumentCommentActions.create(data);
     }
     render() {
         return (
@@ -20,9 +28,7 @@ class ViewDocument extends React.Component {
               {_.map(this.props.comments, comment => <CommentRow key={comment.id} {...comment} />)}
             </ul>
             <AddCommentForm
-              type="doc"
-              parentId={this.props.doc.id}
-              updateAfterAdd={this.addRow.bind(this)}
+              onSubmit={this.onSubmitComment}
             />
           </div>
         );

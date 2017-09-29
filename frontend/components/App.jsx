@@ -5,7 +5,6 @@ import _ from 'lodash';
 import Sidebar from './common/Sidebar';
 import UserActions from '../actions/UserActions';
 
-@Radium
 class App extends React.Component {
     constructor() {
         super();
@@ -76,4 +75,4 @@ App.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default App;
+export default Radium(App);

@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import _ from 'lodash';
 
-@Radium
 class ListItem extends React.Component {
     constructor() {
         super();
@@ -59,4 +58,4 @@ ListItem.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default ListItem;
+export default Radium(ListItem);

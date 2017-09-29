@@ -4,7 +4,6 @@ import _ from 'lodash';
 import GroupHeaderLink from './GroupHeaderLink';
 import GroupActions from '../../actions/GroupActions';
 
-@Radium
 class GroupBase extends React.Component {
     get styles() {
         return {
@@ -42,8 +41,9 @@ class GroupBase extends React.Component {
         );
     }
 }
+
 GroupBase.contextTypes = {
     router: React.PropTypes.object,
 };
 
-export default GroupBase;
+export default Radium(GroupBase);
