@@ -10,7 +10,7 @@ const AddCommentForm = props => (
 );
 
 AddCommentForm.propTypes = {
-    onSubmit: React.PropTypes.func.isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
 };
 
 export default AddCommentForm;

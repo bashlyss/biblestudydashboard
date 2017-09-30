@@ -8,8 +8,8 @@ const GroupBaseContainer = props =>
     groupId={parseInt(props.params.groupId, 10)}
     stores={{
       group: sprops => ({
-          store: GroupStore,
-          value: GroupStore.getFor(sprops.groupId),
+        store: GroupStore,
+        value: GroupStore.getFor(sprops.groupId),
       }),
     }}
   >

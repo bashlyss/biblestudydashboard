@@ -10,16 +10,16 @@ const GroupDetailContainer = props =>
     groupId={props.group.id}
     stores={{
       comments: sprops => ({
-          store: GroupCommentStore,
-          value: GroupCommentStore.getForGroup(sprops.groupId),
+        store: GroupCommentStore,
+        value: GroupCommentStore.getForGroup(sprops.groupId),
       }),
       docs: sprops => ({
-          store: DocStore,
-          value: DocStore.getForGroup(sprops.groupId),
+        store: DocStore,
+        value: DocStore.getForGroup(sprops.groupId),
       }),
       users: sprops => ({
-          store: UserStore,
-          value: UserStore.getForGroup(sprops.groupId),
+        store: UserStore,
+        value: UserStore.getForGroup(sprops.groupId),
       }),
     }}
   >

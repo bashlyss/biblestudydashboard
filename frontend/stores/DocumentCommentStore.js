@@ -5,29 +5,29 @@ import DocumentCommentActions from '../actions/DocumentCommentActions';
 import DocActions from '../actions/DocActions';
 
 class DocumentCommentStore extends RESTStore {
-    constructor() {
-        super(DocumentCommentActions);
+  constructor() {
+    super(DocumentCommentActions);
 
-        this.byDocument = {};
+    this.byDocument = {};
 
-        this.bindListeners({
-            handleUpdateFromDocument: DocActions.UPDATE,
-            handleUpdateForDocuments: DocumentCommentActions.ADD_ONE,
-        });
-    }
+    this.bindListeners({
+      handleUpdateFromDocument: DocActions.UPDATE,
+      handleUpdateForDocuments: DocumentCommentActions.ADD_ONE,
+    });
+  }
 
-    handleUpdateFromDocument(documents) {
-        this.byDocument = _.zipObject(_.map(documents, 'id'), _.map(documents, 'comments'));
-    }
+  handleUpdateFromDocument(documents) {
+    this.byDocument = _.zipObject(_.map(documents, 'id'), _.map(documents, 'comments'));
+  }
 
-    handleUpdateForDocuments(comment) {
-        this.byDocument[comment.document].push(comment.id);
-    }
+  handleUpdateForDocuments(comment) {
+    this.byDocument[comment.document].push(comment.id);
+  }
 
-    static getForDocument(documentId) {
-        const state = this.getState();
-        return _.pick(state.objects, state.byDocument[documentId]);
-    }
+  static getForDocument(documentId) {
+    const state = this.getState();
+    return _.pick(state.objects, state.byDocument[documentId]);
+  }
 }
 
 export default dispatcher.createStore(DocumentCommentStore, 'DocumentCommentStore');

@@ -9,12 +9,12 @@ const DocumentContainer = props =>
     id={props.params.id}
     stores={{
       doc: sprops => ({
-          store: DocStore,
-          value: DocStore.getFor(sprops.id),
+        store: DocStore,
+        value: DocStore.getFor(sprops.id),
       }),
       comments: sprops => ({
-          store: DocumentCommentStore,
-          value: DocumentCommentStore.getForDocument(sprops.id),
+        store: DocumentCommentStore,
+        value: DocumentCommentStore.getForDocument(sprops.id),
       }),
     }}
   >

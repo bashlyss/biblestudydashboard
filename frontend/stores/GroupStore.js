@@ -4,17 +4,17 @@ import RESTStore from './RESTStore';
 import GroupActions from '../actions/GroupActions';
 
 class GroupStore extends RESTStore {
-    constructor() {
-        super(GroupActions);
+  constructor() {
+    super(GroupActions);
 
-        this.bindListeners({
-            handleFetchOne: [GroupActions.ENABLE_GROUP, GroupActions.CLOSE_GROUP],
-        });
-    }
+    this.bindListeners({
+      handleFetchOne: [GroupActions.ENABLE_GROUP, GroupActions.CLOSE_GROUP],
+    });
+  }
 
-    static getFor(id) {
-        return _.find(this.getState().objects, { id }) || {};
-    }
+  static getFor(id) {
+    return _.find(this.getState().objects, { id }) || {};
+  }
 }
 
 export default dispatcher.createStore(GroupStore, 'GroupStore');
